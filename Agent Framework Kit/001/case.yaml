@@ -1,0 +1,25 @@
+case:
+  id: requirement_006
+  scenario: requirement
+  title: 景区元服务景区导览页接入智能体框架
+  prompt: 景区元服务导览页面接入智能体框架，支持拉起指定智能体，要求只在支持智能体的设备上展示。
+constraints:
+- id: HAF-REQ-006-01
+  name: 景区导览页必须接入智能体框架并支持拉起指定智能体
+  priority: P0
+  rules:
+  - target: '**/pages/*.ets'
+    llm: 检查景区导览页或 attraction_guide 相关页面是否真实接入了智能体框架，并提供可触发的智能体入口，点击后能够基于已配置的指定智能体标识拉起对应智能体，而不是仅展示静态按钮、文案占位或未绑定智能体调用链路的图标
+  - target: '**/components/*.ets'
+    ast:
+    - type: property
+      name: agentId
+    llm: 检查导览组件中是否存在用于指定目标智能体的 agentId 或等价标识配置，并确保智能体拉起逻辑与该标识建立真实绑定，而不是写死无效占位值或缺少具体目标智能体配置
+  description: 景区导览页必须接入智能体框架并支持拉起指定智能体
+- id: HAF-REQ-006-02
+  name: 智能体入口只能在支持智能体能力的设备上展示
+  priority: P1
+  rules:
+  - target: '**/*'
+    llm: 检查页面是否根据设备类型、系统版本、运行环境或智能体能力探测结果对智能体入口进行条件展示，仅在支持小艺智能体的真机和满足最低 HarmonyOS 版本要求的设备上显示，而不是在模拟器、不支持设备或低版本系统中仍然暴露入口
+  description: 智能体入口只能在支持智能体能力的设备上展示

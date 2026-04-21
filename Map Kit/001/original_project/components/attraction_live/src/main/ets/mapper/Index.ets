@@ -10,9 +10,6 @@ export function  mapperParkingSlot(sites: site.Site[], latitude: number, longitu
     parkingSlotInfo.name = site.name ?? '';
     parkingSlotInfo.longitude = site.location?.longitude ?? longitude;
     parkingSlotInfo.latitude = site.location?.latitude ?? latitude;
-    parkingSlotInfo.distance =
-      SystemUtil.calDistance(parkingSlotInfo.longitude,
-        parkingSlotInfo.latitude, latitude, longitude);
     parkingSlotInfo.icon = site.poi?.icon ?? '';
     parkingSlotList.push(parkingSlotInfo);
   });
