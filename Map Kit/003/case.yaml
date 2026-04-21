@@ -1,0 +1,5 @@
+case:
+  id: requirement_002
+  scenario: requirement
+  title: 景区元服务导览页实现华为地图显示
+  prompt: 在attraction_guide模块中导览页面新增华为地图显示功能，地图需具备批量绘制景点点标记的能力。

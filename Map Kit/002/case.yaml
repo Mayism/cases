@@ -1,0 +1,5 @@
+case:
+  id: requirement_002
+  scenario: requirement
+  title: 景区元服务餐饮住宿页新增获取景区附近餐饮及住宿信息列表的功能
+  prompt: 以松山湖景区为例，在餐饮住宿页面（catering_accommodation）模块中实现获取景区附近餐饮及住宿地点信息列表的功能，切换Tabs要能正常切换列表数据。
