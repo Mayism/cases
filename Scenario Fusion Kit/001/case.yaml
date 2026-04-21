@@ -1,0 +1,30 @@
+case:
+  id: requirement_005
+  scenario: requirement
+  title: 景区元服务新增收货地址页面支持一键导入华为账号收货地址
+  prompt: 在新增收货地址页面，支持一键导入华为账号的收货地址信息，导入的收货地址信息自动填充到编辑区域。
+constraints:
+- id: HSF-REQ-005-01
+  name: 收货地址页面必须提供一键导入华为账号收货地址入口，并真实调用系统地址选择能力
+  priority: P0
+  rules:
+  - target: '**/pages/*.ets'
+    ast:
+    - type: call
+      name: chooseAddress
+    llm: 检查 mine 模块新增的收货地址页面是否提供“一键导入华为账号地址”或等价入口，并真实调用 AccountKit 的 shippingAddress.chooseAddress 能力，而不是仅展示按钮、静态文案或本地伪造地址数据
+  description: 收货地址页面必须提供一键导入华为账号收货地址入口，并真实调用系统地址选择能力
+- id: HSF-REQ-005-02
+  name: 导入后的华为账号收货地址必须自动回填到地址编辑区域
+  priority: P1
+  rules:
+  - target: '**/pages/*.ets'
+    llm: 检查用户选择华为账号收货地址后，收货人姓名、手机号、所在地区和详细地址等可编辑字段是否会自动填充到页面编辑区域，并可在导入后继续修改，而不是只返回原始对象、只填充部分字段或完全不回填到表单
+  description: 导入后的华为账号收货地址必须自动回填到地址编辑区域
+- id: HSF-REQ-005-03
+  name: 工程配置中必须包含华为账号地址导入所需的基础接入配置与权限声明
+  priority: P1
+  rules:
+  - target: '**/module.json5'
+    llm: 检查工程配置是否补充了华为账号地址导入场景所需的基础接入条件，至少应覆盖 AccountKit 相关接入配置、client ID 或收货地址选择能力依赖的权限声明，保证一键导入收货地址链路具备运行前提
+  description: 工程配置中必须包含华为账号地址导入所需的基础接入配置与权限声明

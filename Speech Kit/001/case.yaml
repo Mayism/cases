@@ -1,0 +1,27 @@
+case:
+  id: requirement_004
+  scenario: requirement
+  title: 景区元服务景点详情页新增景区播报功能
+  prompt: 在attraction_announcement模块中新增景点播报功能，播报景点介绍内容。
+constraints:
+- id: HS-REQ-001-01
+  name: 景点详情页必须提供可触发的播报入口，并接入真实语音播报能力
+  priority: P0
+  rules:
+  - target: '**/pages/*.ets'
+    llm: 检查 attraction_announcement 相关页面是否提供明确可点击的播报入口，并在交互后真实触发语音播报链路，而不是仅展示按钮样式、Toast 提示或文本模拟
+  description: 景点详情页必须提供可触发的播报入口，并接入真实语音播报能力
+- id: HS-REQ-001-02
+  name: 播报内容必须来源于当前景点介绍信息，不能使用无关或固定占位文本
+  priority: P1
+  rules:
+  - target: '**/*'
+    llm: 检查语音播报所使用的文本内容是否来自当前景点详情、景点介绍字段或同等业务数据源，保证不同景点可播报不同介绍内容，而不是始终播报同一段固定话术
+  description: 播报内容必须来源于当前景点介绍信息，不能使用无关或固定占位文本
+- id: HS-REQ-001-03
+  name: 页面必须体现播报状态或提供基础播放控制，保证播报交互可感知
+  priority: P1
+  rules:
+  - target: '**/pages/*.ets'
+    llm: 检查页面是否对播报中的状态、播放完成结果或停止重播等基础控制提供可感知反馈，避免用户点击播报后无任何状态变化、无法判断是否正在播报或无法再次操作
+  description: 页面必须体现播报状态或提供基础播放控制，保证播报交互可感知

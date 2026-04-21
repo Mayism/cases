@@ -3,3 +3,25 @@ case:
   scenario: requirement
   title: 景区元服务餐饮住宿页新增获取景区附近餐饮及住宿信息列表的功能
   prompt: 以松山湖景区为例，在餐饮住宿页面（catering_accommodation）模块中实现获取景区附近餐饮及住宿地点信息列表的功能，切换Tabs要能正常切换列表数据。
+constraints:
+- id: HM-REQ-002-01
+  name: 餐饮住宿页必须提供餐饮与住宿双 Tab，并在切换后展示对应列表数据
+  priority: P0
+  rules:
+  - target: '**/pages/*.ets'
+    llm: 检查 catering_accommodation 相关页面是否同时提供餐饮和住宿两个 Tab 或等价切换入口，并确保用户切换后页面主体列表同步切换为对应分类数据，而不是始终显示同一批内容
+  description: 餐饮住宿页必须提供餐饮与住宿双 Tab，并在切换后展示对应列表数据
+- id: HM-REQ-002-02
+  name: 列表数据必须围绕景区附近地点构建，不得混入明显无关的远距离结果
+  priority: P1
+  rules:
+  - target: '**/*'
+    llm: 检查餐饮与住宿数据获取逻辑是否以景区坐标、当前位置或景区周边范围为基础筛选附近地点，避免直接展示与景区无关的默认数据、固定 mock 列表或明显超出附近范围的地点
+  description: 列表数据必须围绕景区附近地点构建，不得混入明显无关的远距离结果
+- id: HM-REQ-002-03
+  name: 切换 Tab 后列表状态必须独立更新，不能出现分类错乱或数据残留
+  priority: P1
+  rules:
+  - target: '**/pages/*.ets'
+    llm: 检查 Tab 切换时是否存在独立的数据加载、状态刷新或筛选逻辑，保证餐饮与住宿列表不会出现标题已切换但内容未更新、旧分类数据残留或空白页无法恢复的问题
+  description: 切换 Tab 后列表状态必须独立更新，不能出现分类错乱或数据残留

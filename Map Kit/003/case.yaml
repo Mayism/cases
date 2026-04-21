@@ -1,5 +1,30 @@
 case:
-  id: requirement_002
+  id: requirement_003
   scenario: requirement
   title: 景区元服务导览页实现华为地图显示
   prompt: 在attraction_guide模块中导览页面新增华为地图显示功能，地图需具备批量绘制景点点标记的能力。
+constraints:
+- id: HM-REQ-007-01
+  name: 首页必须接入 MapKit 地图组件并将地图作为景区导览主视图
+  priority: P0
+  rules:
+  - target: '**/pages/*.ets'
+    ast:
+    - type: call
+      name: MapComponent
+    llm: 检查首页或核心导览页是否真实接入了 MapKit 的 MapComponent 作为地图主视图，而不是仅使用静态图片、占位色块或文本模拟地图
+  description: 首页必须接入 MapKit 地图组件并将地图作为景区导览主视图
+- id: HM-REQ-007-02
+  name: 页面必须展示当前位置信息或对应定位状态，并提供景区导览信息区
+  priority: P1
+  rules:
+  - target: '**/pages/*.ets'
+    llm: 检查页面是否存在当前位置文案、定位中状态或定位结果展示区域，并同时提供景区名称、游览提示、推荐景点或导览入口等景区业务信息，而不是只有一张空地图
+  description: 页面必须展示当前位置信息或对应定位状态，并提供景区导览信息区
+- id: HM-REQ-007-03
+  name: 工程配置中必须包含地图与定位相关的基础权限声明
+  priority: P1
+  rules:
+  - target: '**/module.json5'
+    llm: 检查工程配置是否补充了地图与定位场景所需的基础权限声明，至少应覆盖位置权限相关配置，保证当前位置展示链路具备运行前提
+  description: 工程配置中必须包含地图与定位相关的基础权限声明
