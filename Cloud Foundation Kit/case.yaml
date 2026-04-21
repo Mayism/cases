@@ -1,0 +1,5 @@
+case:
+  id: insurance_001
+  scenario: insurance
+  title: 医保元服务模板新增安装预加载功能
+  prompt: 在entryAbility的onCreate中新增按照预加载的功能，非首次调用functionNormal函数
