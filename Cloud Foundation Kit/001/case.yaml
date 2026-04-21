@@ -1,5 +1,0 @@
-case:
-  id: requirement _001
-  scenario: requirement
-  title: 景区元服务首页新增获取景区附近停车场列表信息的功能
-  prompt: 以松山湖景区为例，在首页attraction_live模块中实现获取景区周边最近的3个停车场信息的功能，以列表形式展示，列表条目包含停车场名称、距离及导航。
