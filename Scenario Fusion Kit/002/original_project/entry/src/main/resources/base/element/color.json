@@ -1,0 +1,28 @@
+{
+  "color": [
+    {
+      "name": "fontColor_text3",
+      "value": "#182431"
+    },
+    {
+      "name": "bgc",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "news_title_fontColor",
+      "value": "#000000"
+    },
+    {
+      "name": "news_content_fontColor",
+      "value": "#000000"
+    },
+    {
+      "name": "news_time_fontColor",
+      "value": "#FF989898"
+    },
+    {
+      "name": "tab_icon_selected",
+      "value": "#5C79D9"
+    }
+  ]
+}

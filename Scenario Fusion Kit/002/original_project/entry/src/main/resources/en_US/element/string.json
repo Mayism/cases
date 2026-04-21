@@ -1,0 +1,104 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "news sample"
+    },
+    {
+      "name": "placeholder",
+      "value": "Wuhan"
+    },
+    {
+      "name": "location",
+      "value": "Location"
+    },
+    {
+      "name": "hotCity",
+      "value": "Hot cities"
+    },
+    {
+      "name": "mock1",
+      "value": "mockDataThree.json"
+    },
+    {
+      "name": "mock2",
+      "value": "mockDataFour.json"
+    },
+    {
+      "name": "refresh",
+      "value": "Refresh successful"
+    },
+    {
+      "name": "search_text",
+      "value": "search"
+    },
+    {
+      "name": "get_location",
+      "value": "Get location"
+    },
+    {
+      "name": "tab_bar_option_one",
+      "value": "Home page"
+    },
+    {
+      "name": "tab_bar_option_two",
+      "value": "Concerned"
+    },
+    {
+      "name": "tab_bar_option_three",
+      "value": "Mine"
+    },
+    {
+      "name": "blank_view_text",
+      "value": "No data available at the moment"
+    },
+    {
+      "name": "tab_bar_type1",
+      "value": "All"
+    },
+    {
+      "name": "tab_bar_type2",
+      "value": "Domestic"
+    },
+    {
+      "name": "tab_bar_type3",
+      "value": "International"
+    },
+    {
+      "name": "tab_bar_type4",
+      "value": "Entertainment"
+    },
+    {
+      "name": "tab_bar_type5",
+      "value": "Military"
+    },
+    {
+      "name": "tab_bar_type6",
+      "value": "Sports"
+    },
+    {
+      "name": "tab_bar_type7",
+      "value": "Science and technology"
+    },
+    {
+      "name": "tab_bar_type8",
+      "value": "Finance and Economics"
+    },
+    {
+      "name": "location_desc",
+      "value": "Allow the app to obtain the device's location information in the news homepage scenario"
+    },
+    {
+      "name": "approximately_location_desc",
+      "value": "Allow the app to obtain the device's approximate location information in the news homepage scenario"
+    }
+  ]
+}

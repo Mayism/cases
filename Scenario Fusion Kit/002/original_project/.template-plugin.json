@@ -1,0 +1,12 @@
+{
+  "ignoreFiles": [
+    "**/hw_sign/**",
+    "**/bac_output/**",
+    "local.properties",
+    "oh-package-lock.json"
+  ],
+  "maskDependencies": [
+    "@hw-agconnect/template-plugin",
+    "@ohos/hvigor-ohos-online-sign-plugin"
+  ]
+}

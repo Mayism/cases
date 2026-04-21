@@ -1,0 +1,92 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "news sample"
+    },
+    {
+      "name": "news_title_image_height",
+      "value": "16vp"
+    },
+    {
+      "name": "news_title_image_width",
+      "value": "40vp"
+    },
+    {
+      "name": "list_image_weight",
+      "value": "110vp"
+    },
+    {
+      "name": "list_image_height",
+      "value": "110vp"
+    },
+    {
+      "name": "image_margin",
+      "value": "12vp"
+    },
+    {
+      "name": "news_page_height",
+      "value": "93.3%"
+    },
+    {
+      "name": "news_List_width",
+      "value": "100%"
+    },
+    {
+      "name": "news_list_margin_bottom",
+      "value": "12vp"
+    },
+    {
+      "name": "placeholder",
+      "value": "Wuhan"
+    },
+    {
+      "name": "location",
+      "value": "Location"
+    },
+    {
+      "name": "news_title_row_height",
+      "value": "20vp"
+    },
+    {
+      "name": "news_title_row_margin_top",
+      "value": "10vp"
+    },
+    {
+      "name": "city_text_width",
+      "value": "23%"
+    },
+    {
+      "name": "city_padding_right",
+      "value": "10%"
+    },
+    {
+      "name": "news_content_height",
+      "value": "14vp"
+    },
+    {
+      "name": "news_content_margin",
+      "value": "10vp"
+    },
+    {
+      "name": "news_column_margin",
+      "value": "12vp"
+    },
+    {
+      "name": "mock1",
+      "value": "mockDataThree.json"
+    },
+    {
+      "name": "mock2",
+      "value": "mockDataFour.json"
+    }
+  ]
+}

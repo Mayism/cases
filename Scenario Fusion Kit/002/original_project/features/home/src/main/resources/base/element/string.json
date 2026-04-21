@@ -1,0 +1,44 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "news_List_width",
+      "value": "100%"
+    },
+    {
+      "name": "news_title_row_height",
+      "value": "20vp"
+    },
+    {
+      "name": "news_content_margin",
+      "value": "10vp"
+    },
+    {
+      "name": "news_column_margin",
+      "value": "12vp"
+    },
+    {
+      "name": "mock1",
+      "value": "mockDataThree.json"
+    },
+    {
+      "name": "mock2",
+      "value": "mockDataFour.json"
+    },
+    {
+      "name": "refresh",
+      "value": "Refresh successful"
+    }
+  ]
+}

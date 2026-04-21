@@ -1,0 +1,16 @@
+{
+  "integer": [
+    {
+      "name": "font_size_12",
+      "value": 12
+    },
+    {
+      "name": "size_24",
+      "value": 24
+    },
+    {
+      "name": "tab_bar_height",
+      "value": 56
+    }
+  ]
+}

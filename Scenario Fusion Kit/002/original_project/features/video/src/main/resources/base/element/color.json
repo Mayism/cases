@@ -1,0 +1,16 @@
+{
+  "color": [
+    {
+      "name": "bgc",
+      "value": "#F1F3F5"
+    },
+    {
+      "name": "video_title",
+      "value": "#000000"
+    },
+    {
+      "name": "collect_icon_active",
+      "value": "#f6cd03"
+    }
+  ]
+}
