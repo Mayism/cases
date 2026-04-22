@@ -1,0 +1,12 @@
+{
+  "module": {
+    "name": "module_search_filter",
+    "type": "har",
+    "description": "$string:module_desc",
+    "mainElement": "Module_search_filterAbility",
+    "deviceTypes": [
+      "default"
+    ],
+
+  }
+}

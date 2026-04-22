@@ -1,4 +1,3 @@
-import { serviceNotification } from '@kit.PushKit';
 import { abilityAccessCtrl, PermissionRequestResult, Permissions, bundleManager } from '@kit.AbilityKit';
 import { calendarManager } from '@kit.CalendarKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -54,21 +53,42 @@ export class SystemSceneUtils {
   }
 
   /**
-   * 发起订阅请求
+   * 根据上下文获取日程管理器对象calendarMgr，用于对日历账户进行相关管理操作
    * @returns
    */
-  public static async requestSubscribeNotification(entityIdStr: string):
-    Promise<serviceNotification.RequestResult | null> {
-    try {
-      const entityIds: string[] = entityIdStr.split(',');
-      const type: serviceNotification.SubscribeNotificationType =
-        serviceNotification.SubscribeNotificationType.SUBSCRIBE_WITH_HUAWEI_ID;
-      const res = await serviceNotification.requestSubscribeNotification(SystemSceneUtils.context, entityIds, type);
-      console.info(TAG, 'Succeeded in requesting serviceNotification: %{public}s' + JSON.stringify(res));
-      return res!;
-    } catch (err) {
-      console.error(TAG, 'Failed to request serviceNotification: ' + JSON.stringify(err as BusinessError));
-      return null;
+  public static async getCalendarMgr() {
+    const permissions: Permissions[] = [
+      'ohos.permission.READ_CALENDAR',
+      'ohos.permission.WRITE_CALENDAR',
+    ];
+    const mContext = SystemSceneUtils.context;
+
+    const isGrantedRead = await SystemSceneUtils.checkPermissionGrant(permissions[0]);
+    const isGrantedWrite = await SystemSceneUtils.checkPermissionGrant(permissions[1]);
+
+    if (isGrantedRead && isGrantedWrite) {
+      console.info(TAG, 'already granted calendar permission')
+      return calendarManager.getCalendarManager(mContext);
     }
+
+    const atManager = abilityAccessCtrl.createAtManager();
+
+    return atManager.requestPermissionsFromUser(mContext, permissions).then(async (result: PermissionRequestResult) => {
+      console.info(TAG, `get Permission success, result: ${JSON.stringify(result)}`)
+      if (result.authResults.every(v => v === 0)) {
+        return calendarManager.getCalendarManager(mContext);
+      }
+      // 首次拒绝后，二次弹窗申请
+      if (result.dialogShownResults?.some(v => !v)) {
+        const arr: Array<abilityAccessCtrl.GrantStatus> =
+          await atManager.requestPermissionOnSetting(mContext, permissions);
+        if (arr.every(v => v === abilityAccessCtrl.GrantStatus.PERMISSION_GRANTED)) {
+          return calendarManager.getCalendarManager(mContext);
+        }
+        return null;
+      }
+
+      return null;
+    })
   }
 }

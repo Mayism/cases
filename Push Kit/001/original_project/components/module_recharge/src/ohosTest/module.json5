@@ -1,0 +1,11 @@
+{
+  "module": {
+    "name": "module_recharge_test",
+    "type": "feature",
+    "deviceTypes": [
+      "tablet"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": true
+  }
+}

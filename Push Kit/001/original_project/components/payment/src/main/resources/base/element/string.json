@@ -1,0 +1,24 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "huawei_pay",
+      "value": "华为支付"
+    },
+    {
+      "name": "confirm_pay",
+      "value": "确认"
+    },
+    {
+      "name": "other_bank_card",
+      "value": "使用其他银行卡"
+    },
+    {
+      "name": "agcit_huawei_fitness_center",
+      "value": "1.0.2"
+    }
+  ]
+}

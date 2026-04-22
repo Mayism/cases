@@ -1,0 +1,14 @@
+[
+  {
+    "id": "ch001",
+    "name": "Micheal",
+    "introduction": "国家一级健身教练，职业资格认证，CBBA职业技能...",
+    "photo": "app.media.coach1"
+  },
+  {
+    "id": "ch002",
+    "name": "Amliy",
+    "introduction": "国家一级健身教练，职业资格认证，CBBA职业技能...",
+    "photo": "app.media.coach2"
+  }
+]

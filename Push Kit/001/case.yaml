@@ -1,0 +1,36 @@
+case:
+  id: requirement_008
+  scenario: requirement
+  title: 健身房元服务预约详情页新增订阅预约通知功能
+  prompt: 在course模块中实现订阅已预约课程的通知功能
+constraints:
+- id: HPK-REQ-008-01
+  name: 预约详情页必须提供订阅通知入口，并真实触发预约通知订阅链路
+  priority: P0
+  rules:
+  - target: '**/pages/*.ets'
+    llm: 检查 course 模块预约详情页是否在有效预约状态下提供“订阅通知”入口，并在点击后真实发起 Push Kit 服务通知订阅请求，而不是仅展示按钮、空 onClick 逻辑、Toast 占位或无实际订阅行为的静态交互
+  - target: '**/*'
+    llm: 检查预约记录列表中的订阅通知入口与预约详情页能力保持一致，避免详情页可订阅但列表页入口无效，或两个入口的订阅逻辑、文案和条件不一致
+  description: 预约详情页必须提供订阅通知入口，并真实触发预约通知订阅链路
+- id: HPK-REQ-008-02
+  name: 通知订阅必须绑定有效模板ID并与当前预约课程信息关联
+  priority: P1
+  rules:
+  - target: '**/book/*.ets'
+    ast:
+    - type: property
+      name: entityIds
+    llm: 检查预约详情页是否配置了用于服务通知订阅的 entityIds 或等价模板标识，并确保不再保留无效占位值如 xxx，而是使用真实模板ID接入订阅能力
+  - target: '**/*'
+    llm: 检查订阅逻辑是否与当前预约课程信息建立关联，至少能够围绕当前课程名称、预约时间或预约记录上下文发起对应通知订阅，而不是点击任意预约都订阅同一份无关通知模板
+  description: 通知订阅必须绑定有效模板ID并与当前预约课程信息关联
+- id: HPK-REQ-008-03
+  name: 工程配置中必须包含服务通知订阅所需的Push接入前提和异常处理
+  priority: P1
+  rules:
+  - target: '**/utils/*.ets'
+    llm: 检查工程内是否存在对服务通知订阅请求结果的基础封装、异常处理或成功失败分支处理，避免订阅失败时静默无反馈，或订阅结果无法被用户感知
+  - target: '**/*'
+    llm: 检查工程说明或配置链路是否明确要求开通 Push 服务、配置服务通知模板ID并补充服务端能力前提，保证预约通知订阅链路具备完整接入条件，而不是只有客户端入口
+  description: 工程配置中必须包含服务通知订阅所需的Push接入前提和异常处理

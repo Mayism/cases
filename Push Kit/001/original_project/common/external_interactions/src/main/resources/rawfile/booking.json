@@ -1,0 +1,35 @@
+[
+  {
+    "id": "br002",
+    "createTime": "2025-04-21 10:00:00",
+    "courseBookingId": "cb002",
+    "bookState": 2,
+    "phone": "12345678901",
+    "name": "用户",
+    "personNum": 1,
+    "remark": "备注",
+    "bookingDate": "2025-05-26"
+  },
+  {
+    "id": "br003",
+    "createTime": "2025-04-21 10:00:00",
+    "courseBookingId": "cb003",
+    "bookState": 3,
+    "phone": "12345678901",
+    "name": "用户",
+    "personNum": 1,
+    "remark": "备注",
+    "bookingDate": "2025-05-26"
+  },
+  {
+    "id": "br004",
+    "createTime": "2025-04-21 10:00:00",
+    "courseBookingId": "cb004",
+    "bookState": 4,
+    "phone": "12345678901",
+    "name": "用户",
+    "personNum": 1,
+    "remark": "备注",
+    "bookingDate": "2025-05-26"
+  }
+]
