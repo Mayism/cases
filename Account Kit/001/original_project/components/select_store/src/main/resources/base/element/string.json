@@ -1,0 +1,40 @@
+{
+  "string": [
+    {
+      "name": "page_show",
+      "value": "page from package"
+    },
+    {
+      "name": "search",
+      "value": "搜索"
+    },
+    {
+      "name": "collapse_map",
+      "value": "收起地图"
+    },
+    {
+      "name": "expand_map",
+      "value": "展开地图"
+    },
+    {
+      "name": "store_open_time",
+      "value": "营业时间："
+    },
+    {
+      "name": "store_address_error",
+      "value": "商户地址错误！"
+    },
+    {
+      "name": "select_store",
+      "value": "选择店铺"
+    },
+    {
+      "name": "agcit_huawei_tea_drink_orders_select_store",
+      "value": "1.0.2"
+    },
+    {
+      "name": "agcittype_huawei_tea_drink_orders_select_store",
+      "value": "serviceComponent"
+    }
+  ]
+}

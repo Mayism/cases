@@ -1,0 +1,68 @@
+{
+  "routerMap": [
+    {
+      "name": "ConfirmOrderPage",
+      "pageSourceFile": "src/main/ets/pages/ConfirmOrderPage.ets",
+      "buildFunction": "ConfirmOrderPageBuilder",
+      "data": {
+        "description": "this is ConfirmOrderPageBuilder"
+      }
+    },
+    {
+      "name": "GoodsDetailPage",
+      "pageSourceFile": "src/main/ets/pages/GoodsDetailPage.ets",
+      "buildFunction": "GoodsDetailPageBuilder",
+      "data": {
+        "description": "this is GoodDetailPageBuilder"
+      }
+    },
+    {
+      "name": "MerchantDetailPage",
+      "pageSourceFile": "src/main/ets/pages/MerchantDetailPage.ets",
+      "buildFunction": "MerchantDetailPageBuilder",
+      "data": {
+        "description": "this is MerchantDetailPageBuilder"
+      }
+    },
+    {
+      "name": "PreviewImagePage",
+      "pageSourceFile": "src/main/ets/pages/PreviewImagePage.ets",
+      "buildFunction": "PreviewImagePageBuilder",
+      "data": {
+        "description": "this is PreviewImagePageBuilder"
+      }
+    },
+    {
+      "name": "RemarksPage",
+      "pageSourceFile": "src/main/ets/pages/RemarksPage.ets",
+      "buildFunction": "RemarksPageBuilder",
+      "data": {
+        "description": "this is RemarksPageBuilder"
+      }
+    },
+    {
+      "name": "SelectCouponPage",
+      "pageSourceFile": "src/main/ets/pages/SelectCouponPage.ets",
+      "buildFunction": "SelectCouponPageBuilder",
+      "data": {
+        "description": "this is SelectCouponPageBuilder"
+      }
+    },
+    {
+      "name": "SelectStorePage",
+      "pageSourceFile": "src/main/ets/pages/SelectStorePage.ets",
+      "buildFunction": "SelectStorePageBuilder",
+      "data": {
+        "description": "this is SelectStorePageBuilder"
+      }
+    },
+    {
+      "name": "SnackSizedDealPage",
+      "pageSourceFile": "src/main/ets/pages/SnackSizedDealPage.ets",
+      "buildFunction": "SnackSizedDealPageBuilder",
+      "data": {
+        "description": "this is SnackSizedDealPageBuilder"
+      }
+    }
+  ]
+}

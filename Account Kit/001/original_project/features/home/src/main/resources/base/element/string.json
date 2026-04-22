@@ -1,0 +1,28 @@
+{
+  "string": [
+    {
+      "name": "shared_desc",
+      "value": "description"
+    },
+    {
+      "name": "agcit_huawei_reservation_queue_book_queue",
+      "value": "1.0.0"
+    },
+    {
+      "name": "agcittype_huawei_reservation_queue_book_queue",
+      "value": "serviceComponent"
+    },
+    {
+      "name": "border_radius_14",
+      "value": "14"
+    },
+    {
+      "name": "margin_16",
+      "value": "16"
+    },
+    {
+      "name": "location_permission",
+      "value": "查看商家位置距离需要允许应用运行时获取位置信息"
+    }
+  ]
+}

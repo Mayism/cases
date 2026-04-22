@@ -1,0 +1,141 @@
+{
+  "app": {
+    "signingConfigs": [],
+    "products": [
+      {
+        "name": "default",
+        "signingConfig": "default",
+        "compatibleSdkVersion": "5.0.5(17)",
+        "targetSdkVersion": "6.0.2(22)",
+        "runtimeOS": "HarmonyOS",
+        "buildOption": {
+          "strictMode": {
+            "useNormalizedOHMUrl": true
+          }
+        }
+      }
+    ],
+    "buildModeSet": [
+      {
+        "name": "debug"
+      },
+      {
+        "name": "release"
+      }
+    ]
+  },
+  "modules": [
+    {
+      "name": "home",
+      "srcPath": "./features/home",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "order_list",
+      "srcPath": "./features/order_list",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "order",
+      "srcPath": "./features/order",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "common",
+      "srcPath": "./commons/common",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "network",
+      "srcPath": "./commons/network",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "personal_center",
+      "srcPath": "./features/personal_center",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "entry",
+      "srcPath": "./products/entry",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "select_store",
+      "srcPath": "./components/select_store"
+    },
+    {
+      "name": "base_ui",
+      "srcPath": "./components/base_ui"
+    },
+    {
+      "name": "snack_sized_deal",
+      "srcPath": "./components/snack_sized_deal"
+    },
+    {
+      "name": "my_wallet",
+      "srcPath": "./components/my_wallet"
+    },
+    {
+      "name": "goods_detail",
+      "srcPath": "./components/goods_detail"
+    },
+    {
+      "name": "module_city_select",
+      "srcPath": "./components/module_city_select"
+    },
+    {
+      "name": "search",
+      "srcPath": "./components/search"
+    }
+  ]
+}

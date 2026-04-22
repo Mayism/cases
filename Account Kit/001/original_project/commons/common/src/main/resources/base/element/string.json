@@ -1,0 +1,52 @@
+{
+  "string": [
+    {
+      "name": "full_size",
+      "value": "100%"
+    },
+    {
+      "name": "shared_desc",
+      "value": "description"
+    },
+    {
+      "name": "request_failed",
+      "value": "请求失败"
+    },
+    {
+      "name": "cancel_pay",
+      "value": "取消支付"
+    },
+    {
+      "name": "pay_failed",
+      "value": "支付失败"
+    },
+    {
+      "name": "network_error",
+      "value": "网络链接异常"
+    },
+    {
+      "name": "duplicate_request",
+      "value": "重复请求"
+    },
+    {
+      "name": "copy_success",
+      "value": "复制成功"
+    },
+    {
+      "name": "permission_failed",
+      "value": "权限获取失败"
+    },
+    {
+      "name": "tab_home",
+      "value": "首页"
+    },
+    {
+      "name": "border_radius_16",
+      "value": "16vp"
+    },
+    {
+      "name": "agcit_huawei_catering_orders",
+      "value": "1.0.1"
+    }
+  ]
+}

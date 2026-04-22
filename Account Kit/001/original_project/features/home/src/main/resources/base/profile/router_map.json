@@ -1,0 +1,60 @@
+{
+  "routerMap": [
+    {
+      "name": "CitySelectPage",
+      "pageSourceFile": "src/main/ets/pages/CitySelectPage.ets",
+      "buildFunction": "CitySelectPageBuilder",
+      "data": {
+        "description": "this is CitySelectPageBuilder"
+      }
+    },
+    {
+      "name": "BookPage",
+      "pageSourceFile": "src/main/ets/pages/book/BookPage.ets",
+      "buildFunction": "bookPageBuilder",
+      "data": {
+        "description": "订座页面"
+      }
+    },
+    {
+      "name": "BookOrderPage",
+      "pageSourceFile": "src/main/ets/pages/book/BookOrderPage.ets",
+      "buildFunction": "bookOrderPageBuilder",
+      "data": {
+        "description": "订座订单页面"
+      }
+    },
+    {
+      "name": "BookResPage",
+      "pageSourceFile": "src/main/ets/pages/book/BookResPage.ets",
+      "buildFunction": "bookResPageBuilder",
+      "data": {
+        "description": "订座结果页面"
+      }
+    },
+    {
+      "name": "QueuePage",
+      "pageSourceFile": "src/main/ets/pages/queue/QueuePage.ets",
+      "buildFunction": "queuePageBuilder",
+      "data": {
+        "description": "排号页面"
+      }
+    },
+    {
+      "name": "QueueOrderPage",
+      "pageSourceFile": "src/main/ets/pages/queue/QueueOrderPage.ets",
+      "buildFunction": "queueOrderPageBuilder",
+      "data": {
+        "description": "排号订单页面"
+      }
+    },
+    {
+      "name": "QueueResPage",
+      "pageSourceFile": "src/main/ets/pages/queue/QueueResPage.ets",
+      "buildFunction": "queueResPageBuilder",
+      "data": {
+        "description": "排号结果页面"
+      }
+    }
+  ]
+}

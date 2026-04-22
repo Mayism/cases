@@ -1,0 +1,324 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "点餐"
+    },
+    {
+      "name": "INTERNET_REASON",
+      "value": "获取访问互联网权限"
+    },
+    {
+      "name": "location_permission",
+      "value": "查看商家位置功能需要允许应用运行时获取位置信息"
+    },
+    {
+      "name": "EntryFormAbility_desc",
+      "value": "form_description"
+    },
+    {
+      "name": "EntryFormAbility_label",
+      "value": "form_label"
+    },
+    {
+      "name": "widget_desc",
+      "value": "点餐卡片"
+    },
+    {
+      "name": "widget_display_name",
+      "value": "点餐卡片"
+    },
+    {
+      "name": "card_title",
+      "value": "Title"
+    },
+    {
+      "name": "introduction",
+      "value": "Introduction"
+    },
+    {
+      "name": "order",
+      "value": "点餐"
+    },
+    {
+      "name": "storeName",
+      "value": "点餐"
+    },
+    {
+      "name": "goOrderDetail",
+      "value": "立即查看"
+    },
+    {
+      "name": "order_pick_num",
+      "value": "取餐码"
+    },
+    {
+      "name": "login_account",
+      "value": "请先登录华为账号"
+    },
+    {
+      "name": "agcit_huawei_catering_orders",
+      "value": "1.0.1"
+    },
+    {
+      "name": "scan",
+      "value": "扫一扫"
+    },
+    {
+      "name": "scan_desc",
+      "value": "扫码点餐，简单便捷"
+    },
+    {
+      "name": "preorder",
+      "value": "预约订座"
+    },
+    {
+      "name": "preorder_desc",
+      "value": "提前订座，避免排队"
+    },
+    {
+      "name": "queue",
+      "value": "取号排队"
+    },
+    {
+      "name": "queue_desc",
+      "value": "提前排号，无需等待"
+    },
+    {
+      "name": "order_list",
+      "value": "订单列表"
+    },
+    {
+      "name": "not_complete",
+      "value": "未完成"
+    },
+    {
+      "name": "completed",
+      "value": "已完成"
+    },
+    {
+      "name": "other",
+      "value": "其他"
+    },
+    {
+      "name": "to_be_paid",
+      "value": "待支付"
+    },
+    {
+      "name": "canceled",
+      "value": "已取消"
+    },
+    {
+      "name": "total_num",
+      "value": "共%s件"
+    },
+    {
+      "name": "order_id_label",
+      "value": "订单号：%s"
+    },
+    {
+      "name": "pick_good_id",
+      "value": "取餐号: "
+    },
+    {
+      "name": "pay",
+      "value": "付款"
+    },
+    {
+      "name": "order_statue_error",
+      "value": "订单状态已刷新，请重新操作"
+    },
+    {
+      "name": "order_not_exist",
+      "value": "订单不存在。"
+    },
+    {
+      "name": "cancel_success",
+      "value": "取消成功"
+    },
+    {
+      "name": "cancel_failed",
+      "value": "取消失败"
+    },
+    {
+      "name": "delete_order",
+      "value": "删除订单"
+    },
+    {
+      "name": "delete_confirm",
+      "value": "确认删除吗？"
+    },
+    {
+      "name": "one_more_order",
+      "value": "再来一单"
+    },
+    {
+      "name": "contact_store",
+      "value": "联系商家"
+    },
+    {
+      "name": "personal_center",
+      "value": "我的"
+    },
+    {
+      "name": "replace_header_failed",
+      "value": "头像获取失败~"
+    },
+    {
+      "name": "no_relative",
+      "value": "华为用户"
+    },
+    {
+      "name": "disassociate",
+      "value": "取消关联"
+    },
+    {
+      "name": "associate_account",
+      "value": "关联账户"
+    },
+    {
+      "name": "wallet",
+      "value": "我的钱包"
+    },
+    {
+      "name": "points",
+      "value": "我的积分"
+    },
+    {
+      "name": "points_param",
+      "value": "%s积分"
+    },
+    {
+      "name": "my_center",
+      "value": "我的中心"
+    },
+    {
+      "name": "my_coupon",
+      "value": "我的优惠券"
+    },
+    {
+      "name": "my_coupon_desc",
+      "value": "用券更划算"
+    },
+    {
+      "name": "help_center",
+      "value": "帮助中心"
+    },
+    {
+      "name": "faqs",
+      "value": "常见问题"
+    },
+    {
+      "name": "customer_phone",
+      "value": "客服电话"
+    },
+    {
+      "name": "clear_car",
+      "value": "清空购物车"
+    },
+    {
+      "name": "selected",
+      "value": "已选："
+    },
+    {
+      "name": "sales_more",
+      "value": "月售100+"
+    },
+    {
+      "name": "month_sale",
+      "value": "月售%s"
+    },
+    {
+      "name": "select_package",
+      "value": "选套餐"
+    },
+    {
+      "name": "select_spec",
+      "value": "选规格"
+    },
+    {
+      "name": "good_number",
+      "value": "数量"
+    },
+    {
+      "name": "add_car",
+      "value": "加入购物车"
+    },
+    {
+      "name": "add_success",
+      "value": "添加成功！"
+    },
+    {
+      "name": "place_order",
+      "value": "去结算"
+    },
+    {
+      "name": "total_price",
+      "value": "共计"
+    },
+    {
+      "name": "unordered_must_good",
+      "value": "未点必选品"
+    },
+    {
+      "name": "need_goods",
+      "value": "请选择商品后下单"
+    },
+    {
+      "name": "need_must_goods",
+      "value": "请选择必选品"
+    },
+    {
+      "name": "list_bottom",
+      "value": "我是有底线的~"
+    },
+    {
+      "name": "search_goods",
+      "value": "搜索商品"
+    },
+    {
+      "name": "new_user_discount",
+      "value": "新用户下单立减%d元"
+    },
+    {
+      "name": "order_title_store_dining",
+      "value": "堂食"
+    },
+    {
+      "name": "order_title_packing",
+      "value": "外带"
+    },
+    {
+      "name": "preorder_sheet_title",
+      "value": "用餐时间"
+    },
+    {
+      "name": "distance_me",
+      "value": "距您"
+    },
+    {
+      "name": "preorder_today",
+      "value": "今天（%s） %s"
+    },
+    {
+      "name": "store_activity",
+      "value": "店铺活动"
+    },
+    {
+      "name": "reason_read_calendar",
+      "value": "添加订座日程"
+    },
+    {
+      "name": "reason_write_calendar",
+      "value": "添加订座日程"
+    }
+  ]
+}

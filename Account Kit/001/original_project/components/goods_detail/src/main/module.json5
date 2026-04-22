@@ -1,0 +1,9 @@
+{
+  "module": {
+    "name": "goods_detail",
+    "type": "har",
+    "deviceTypes": [
+      "default"
+    ]
+  }
+}
