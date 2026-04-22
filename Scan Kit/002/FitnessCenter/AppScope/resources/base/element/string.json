@@ -1,0 +1,20 @@
+{
+  "string": [
+    {
+      "name": "app_name",
+      "value": "Gymnasium"
+    },
+    {
+      "name": "agcit_huawei_fitness_center",
+      "value": "1.0.2"
+    },
+    {
+      "name": "agcittype_huawei_fitness_center",
+      "value": "industryTemplate"
+    },
+    {
+      "name": "agcitkid_huawei_fitness_center",
+      "value": "agcit_huawei_common_atomicservice_login/1.0.0,agcit_huawei_common_city_select/1.0.0,agcit_huawei_common_dial_panel/1.0.0,agcit_huawei_common_feedback/1.0.0,agcit_huawei_common_search/1.0.0"
+    }
+  ]
+}

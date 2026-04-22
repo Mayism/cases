@@ -1,0 +1,12 @@
+{
+  "name": "module_recharge",
+  "version": "1.0.0",
+  "description": "Please describe the basic information.",
+  "main": "Index.ets",
+  "author": "",
+  "license": "",
+  "dependencies": {
+    "external_interactions": "file:../../common/external_interactions"
+  }
+}
+

@@ -1,0 +1,34 @@
+{
+  "routerMap": [
+    {
+      "name": "card/showAllCards",
+      "pageSourceFile": "src/main/ets/generated/RouterBuilder.ets",
+      "buildFunction": "ShowAllCardsBuilder"
+    },
+    {
+      "name": "card/cardDetail",
+      "pageSourceFile": "src/main/ets/generated/RouterBuilder.ets",
+      "buildFunction": "CardDetailBuilder"
+    },
+    {
+      "name": "card/buyCard",
+      "pageSourceFile": "src/main/ets/generated/RouterBuilder.ets",
+      "buildFunction": "BuyCardBuilder"
+    },
+    {
+      "name": "card/userCards",
+      "pageSourceFile": "src/main/ets/generated/RouterBuilder.ets",
+      "buildFunction": "UserCardsBuilder"
+    },
+    {
+      "name": "card/order",
+      "pageSourceFile": "src/main/ets/generated/RouterBuilder.ets",
+      "buildFunction": "OrderBuilder"
+    },
+    {
+      "name": "card/orderDetail",
+      "pageSourceFile": "src/main/ets/generated/RouterBuilder.ets",
+      "buildFunction": "OrderDetailBuilder"
+    }
+  ]
+}

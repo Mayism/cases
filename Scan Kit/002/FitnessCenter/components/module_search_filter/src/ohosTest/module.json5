@@ -1,0 +1,11 @@
+{
+  "module": {
+    "name": "module_search_filter_test",
+    "type": "feature",
+    "deviceTypes": [
+      "tablet"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": true
+  }
+}

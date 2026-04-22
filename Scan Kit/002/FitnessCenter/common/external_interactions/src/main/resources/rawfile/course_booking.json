@@ -1,0 +1,282 @@
+[
+  {
+    "id":"cb001",
+    "courseId": "ce001",
+    "weekday": 0,
+    "timeStart": "9:00",
+    "timeEnd": "10:00",
+    "restQuota": 8,
+    "totalQuota": 10,
+    "coachId": "ch001"
+  },
+  {
+    "id":"cb002",
+    "courseId": "ce002",
+    "weekday": 0,
+    "timeStart": "13:00",
+    "timeEnd": "15:00",
+    "restQuota": 1,
+    "totalQuota": 1,
+    "coachId": "ch001"
+  },
+  {
+    "id":"cb003",
+    "courseId": "ce003",
+    "weekday": 0,
+    "timeStart": "15:00",
+    "timeEnd": "17:00",
+    "restQuota": 0,
+    "totalQuota": 10,
+    "coachId": "ch002"
+  },
+  {
+    "id":"cb004",
+    "courseId": "ce001",
+    "weekday": 1,
+    "timeStart": "9:00",
+    "timeEnd": "10:00",
+    "restQuota": 8,
+    "totalQuota": 10,
+    "coachId": "ch001"
+  },
+  {
+    "id":"cb005",
+    "courseId": "ce002",
+    "weekday": 1,
+    "timeStart": "13:00",
+    "timeEnd": "15:00",
+    "restQuota": 0,
+    "totalQuota": 1,
+    "coachId": "ch001"
+  },
+  {
+    "id":"cb006",
+    "courseId": "ce004",
+    "weekday": 1,
+    "timeStart": "15:00",
+    "timeEnd": "17:00",
+    "restQuota": 10,
+    "totalQuota": 10,
+    "coachId": "ch002"
+  },
+  {
+    "id":"cb007",
+    "courseId": "ce002",
+    "weekday": 2,
+    "timeStart": "9:00",
+    "timeEnd": "10:00",
+    "restQuota": 1,
+    "totalQuota": 1,
+    "coachId": "ch001"
+  },
+  {
+    "id":"cb008",
+    "courseId": "ce003",
+    "weekday": 2,
+    "timeStart": "13:00",
+    "timeEnd": "15:00",
+    "restQuota": 10,
+    "totalQuota": 10,
+    "coachId": "ch001"
+  },
+  {
+    "id":"cb009",
+    "courseId": "ce004",
+    "weekday": 2,
+    "timeStart": "15:00",
+    "timeEnd": "17:00",
+    "restQuota": 10,
+    "totalQuota": 10,
+    "coachId": "ch002"
+  },
+  {
+    "id":"cb010",
+    "courseId": "ce001",
+    "weekday": 3,
+    "timeStart": "9:00",
+    "timeEnd": "10:00",
+    "restQuota": 8,
+    "totalQuota": 10,
+    "coachId": "ch001"
+  },
+  {
+    "id":"cb011",
+    "courseId": "ce002",
+    "weekday": 3,
+    "timeStart": "13:00",
+    "timeEnd": "15:00",
+    "restQuota": 0,
+    "totalQuota": 1,
+    "coachId": "ch001"
+  },
+  {
+    "id":"cb012",
+    "courseId": "ce003",
+    "weekday": 3,
+    "timeStart": "15:00",
+    "timeEnd": "17:00",
+    "restQuota": 0,
+    "totalQuota": 10,
+    "coachId": "ch002"
+  },
+  {
+    "id":"cb013",
+    "courseId": "ce001",
+    "weekday": 4,
+    "timeStart": "9:00",
+    "timeEnd": "10:00",
+    "restQuota": 8,
+    "totalQuota": 10,
+    "coachId": "ch001"
+  },
+  {
+    "id":"cb014",
+    "courseId": "ce002",
+    "weekday": 4,
+    "timeStart": "13:00",
+    "timeEnd": "15:00",
+    "restQuota": 1,
+    "totalQuota": 1,
+    "coachId": "ch001"
+  },
+  {
+    "id":"cb015",
+    "courseId": "ce004",
+    "weekday": 4,
+    "timeStart": "15:00",
+    "timeEnd": "17:00",
+    "restQuota": 10,
+    "totalQuota": 10,
+    "coachId": "ch002"
+  },
+  {
+    "id":"cb016",
+    "courseId": "ce002",
+    "weekday": 5,
+    "timeStart": "9:00",
+    "timeEnd": "10:00",
+    "restQuota": 1,
+    "totalQuota": 1,
+    "coachId": "ch001"
+  },
+  {
+    "id":"cb017",
+    "courseId": "ce003",
+    "weekday": 5,
+    "timeStart": "13:00",
+    "timeEnd": "15:00",
+    "restQuota": 10,
+    "totalQuota": 10,
+    "coachId": "ch001"
+  },
+  {
+    "id":"cb018",
+    "courseId": "ce004",
+    "weekday": 5,
+    "timeStart": "15:00",
+    "timeEnd": "17:00",
+    "restQuota": 10,
+    "totalQuota": 10,
+    "coachId": "ch002"
+  },
+  {
+    "id":"cb019",
+    "courseId": "ce001",
+    "weekday": 6,
+    "timeStart": "9:00",
+    "timeEnd": "10:00",
+    "restQuota": 8,
+    "totalQuota": 10,
+    "coachId": "ch001"
+  },
+  {
+    "id":"cb020",
+    "courseId": "ce002",
+    "weekday": 6,
+    "timeStart": "13:00",
+    "timeEnd": "15:00",
+    "restQuota": 1,
+    "totalQuota": 1,
+    "coachId": "ch001"
+  },
+  {
+    "id":"cb021",
+    "courseId": "ce004",
+    "weekday": 6,
+    "timeStart": "15:00",
+    "timeEnd": "17:00",
+    "restQuota": 10,
+    "totalQuota": 10,
+    "coachId": "ch002"
+  },
+  {
+    "id":"cb022",
+    "courseId": "ce005",
+    "weekday": 1,
+    "timeStart": "14:00",
+    "timeEnd": "17:00",
+    "restQuota": 1,
+    "totalQuota": 1,
+    "coachId": "ch001"
+  },
+  {
+    "id":"cb023",
+    "courseId": "ce005",
+    "weekday": 3,
+    "timeStart": "14:00",
+    "timeEnd": "17:00",
+    "restQuota": 1,
+    "totalQuota": 1,
+    "coachId": "ch001"
+  },
+  {
+    "id":"cb024",
+    "courseId": "ce005",
+    "weekday": 5,
+    "timeStart": "14:00",
+    "timeEnd": "17:00",
+    "restQuota": 1,
+    "totalQuota": 1,
+    "coachId": "ch001"
+  },
+  {
+    "id":"cb025",
+    "courseId": "ce005",
+    "weekday": 0,
+    "timeStart": "14:00",
+    "timeEnd": "17:00",
+    "restQuota": 1,
+    "totalQuota": 1,
+    "coachId": "ch001"
+  },
+  {
+    "id":"cb026",
+    "courseId": "ce006",
+    "weekday": 2,
+    "timeStart": "10:00",
+    "timeEnd": "12:00",
+    "restQuota": 1,
+    "totalQuota": 1,
+    "coachId": "ch002"
+  },
+  {
+    "id":"cb027",
+    "courseId": "ce006",
+    "weekday": 4,
+    "timeStart": "10:00",
+    "timeEnd": "12:00",
+    "restQuota": 1,
+    "totalQuota": 1,
+    "coachId": "ch002"
+  },
+  {
+    "id":"cb028",
+    "courseId": "ce006",
+    "weekday": 6,
+    "timeStart": "10:00",
+    "timeEnd": "12:00",
+    "restQuota": 1,
+    "totalQuota": 1,
+    "coachId": "ch002"
+  }
+]
