@@ -1,0 +1,17 @@
+{
+  "name": "order",
+  "version": "1.0.0",
+  "description": "Please describe the basic information.",
+  "main": "Index.ets",
+  "author": "",
+  "license": "Apache-2.0",
+  "packageType": "InterfaceHar",
+  "dependencies": {
+    "common": "file:../../commons/common",
+    "network": "file:../../commons/network",
+    "base_ui": "file:../../components/base_ui",
+    "select_store": "file:../../components/select_store",
+    "snack_sized_deal": "file:../../components/snack_sized_deal",
+    "goods_detail": "file:../../components/goods_detail",
+  }
+}

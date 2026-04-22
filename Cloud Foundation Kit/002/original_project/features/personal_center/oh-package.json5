@@ -1,0 +1,15 @@
+{
+  "name": "personal_center",
+  "version": "1.0.0",
+  "description": "Please describe the basic information.",
+  "main": "Index.ets",
+  "author": "",
+  "license": "Apache-2.0",
+  "packageType": "InterfaceHar",
+  "dependencies": {
+    "common": "file:../../commons/common",
+    "network": "file:../../commons/network",
+    "base_ui": "file:../../components/base_ui",
+    "my_wallet": "file:../../components/my_wallet",
+  }
+}
