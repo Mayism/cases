@@ -1,0 +1,9 @@
+{
+  "module": {
+    "name": "snack_sized_deal",
+    "type": "har",
+    "deviceTypes": [
+      "default"
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "module": {
+    "name": "automatic_association_count",
+    "type": "har",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ],
+    "requestPermissions": [{
+      "name": "ohos.permission.INTERNET"
+    }]
+  }
+}

@@ -1,0 +1,136 @@
+{
+  "string": [
+    {
+      "name": "page_show",
+      "value": "page from package"
+    },
+    {
+      "name": "full_size",
+      "value": "100%"
+    },
+    {
+      "name": "contact_us",
+      "value": "联系客服"
+    },
+    {
+      "name": "call",
+      "value": "一键拨号"
+    },
+    {
+      "name": "cancel",
+      "value": "取消"
+    },
+    {
+      "name": "store_rest",
+      "value": "小店休息一下~~"
+    },
+    {
+      "name": "business_time",
+      "value": "营业时间"
+    },
+    {
+      "name": "currency_symbol",
+      "value": "￥"
+    },
+    {
+      "name": "full_available",
+      "value": "满%s可用"
+    },
+    {
+      "name": "coupon_type",
+      "value": "全品类可用"
+    },
+    {
+      "name": "valid_until",
+      "value": "有效期至%s"
+    },
+    {
+      "name": "below_threshold",
+      "value": "距离使用门槛还差%s元"
+    },
+    {
+      "name": "instruction",
+      "value": "使用说明"
+    },
+    {
+      "name": "use_now",
+      "value": "立即使用"
+    },
+    {
+      "name": "instruction_label",
+      "value": "使用说明："
+    },
+    {
+      "name": "must_good",
+      "value": "必选品"
+    },
+    {
+      "name": "currency_symbol_post_params",
+      "value": "￥%d"
+    },
+    {
+      "name": "discount",
+      "value": "%s折"
+    },
+    {
+      "name": "coupon_discount",
+      "value": "折"
+    },
+    {
+      "name": "select_pay_type",
+      "value": "选择支付方式"
+    },
+    {
+      "name": "yuan_params",
+      "value": "%s元"
+    },
+    {
+      "name": "huawei_pay",
+      "value": "华为支付"
+    },
+    {
+      "name": "pay_now",
+      "value": "立即支付"
+    },
+    {
+      "name": "shared_desc",
+      "value": "优惠券模块"
+    },
+    {
+      "name": "app_name",
+      "value": "优惠券模块"
+    },
+    {
+      "name": "no_threshold",
+      "value": "无门槛"
+    },
+    {
+      "name": "discount_available",
+      "value": "%s折扣券"
+    },
+    {
+      "name": "below_startTime",
+      "value": "距离活动开始还差%s"
+    },
+    {
+      "name": "selected_coupon",
+      "value": "已选%s张，可减"
+    },
+    {
+      "name": "claim_now",
+      "value": "领取"
+    },
+    {
+      "name": "collected",
+      "value": "已领"
+    },
+    {
+      "name": "agcit_huawei_catering_orders",
+      "value": "1.0.1"
+    },
+    {
+      "name": "confirm",
+      "value": "确定"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+<svg width="16.000000" height="16.000000" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<desc>
+			Created with Pixso.
+	</desc>
+	<defs>
+		<clipPath id="clip325_5760">
+			<rect id="ic_public_close_circle" width="16.000000" height="16.000000" fill="white" fill-opacity="0"/>
+		</clipPath>
+	</defs>
+	<g clip-path="url(#clip325_5760)">
+		<circle id="path3" cx="8.000000" cy="8.000122" r="7.333333" fill="#ED6F21" fill-opacity="1.000000"/>
+		<path id="path4 (边框)" d="M5.43 4.72C5.23 4.53 4.92 4.53 4.72 4.72C4.53 4.92 4.53 5.23 4.72 5.43L7.29 7.99L4.72 10.56C4.53 10.76 4.53 11.07 4.72 11.27C4.92 11.46 5.23 11.46 5.43 11.27L8 8.7L10.56 11.26C10.76 11.46 11.07 11.46 11.27 11.26C11.46 11.06 11.46 10.75 11.27 10.55L8.7 7.99L11.26 5.43C11.46 5.23 11.46 4.92 11.26 4.72C11.06 4.53 10.75 4.53 10.55 4.72L7.99 7.29L5.43 4.72Z" fill="#FFFFFF" fill-opacity="1.000000" fill-rule="evenodd"/>
+	</g>
+</svg>

@@ -1,0 +1,9 @@
+{
+  "module": {
+    "name": "base_ui",
+    "type": "har",
+    "deviceTypes": [
+      "default"
+    ]
+  }
+}

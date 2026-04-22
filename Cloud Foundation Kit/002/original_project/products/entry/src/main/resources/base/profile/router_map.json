@@ -1,0 +1,12 @@
+{
+  "routerMap": [
+    {
+      "name": "MainIndex",
+      "pageSourceFile": "src/main/ets/pages/MainIndex.ets",
+      "buildFunction": "MainIndexBuilder",
+      "data": {
+        "description": "this is MainIndexBuilder"
+      }
+    }
+  ]
+}

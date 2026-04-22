@@ -1,0 +1,11 @@
+{
+  "module": {
+    "name": "my_wallet_test",
+    "type": "feature",
+    "deviceTypes": [
+      "default"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": true
+  }
+}

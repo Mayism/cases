@@ -1,0 +1,36 @@
+{
+  "string": [
+    {
+      "name": "shared_desc",
+      "value": "description"
+    },
+    {
+      "name": "question_title",
+      "value": "帮助您使用更顺畅"
+    },
+    {
+      "name": "question_desc",
+      "value": "请选择一个问题类型"
+    },
+    {
+      "name": "my_order",
+      "value": "我的订单"
+    },
+    {
+      "name": "my_coupon",
+      "value": "我的优惠券"
+    },
+    {
+      "name": "faqs",
+      "value": "常见问题"
+    },
+    {
+      "name": "coupon_used",
+      "value": "已使用"
+    },
+    {
+      "name": "agcit_huawei_catering_orders",
+      "value": "1.0.1"
+    }
+  ]
+}

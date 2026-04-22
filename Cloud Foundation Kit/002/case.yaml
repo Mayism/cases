@@ -1,0 +1,5 @@
+case:
+  id: requirement_002
+  scenario: requirement
+  title: 点餐元服务模板新增安装预加载功能
+  prompt: 在entryAbility的onCreate中新增安装预加载的功能，非首次调用会报异常，异常时可以直接调用云函数“preload”获取预加载数据。

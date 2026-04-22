@@ -1,0 +1,84 @@
+{
+  "string": [
+    {
+      "name": "use_time",
+      "value": "使用时间"
+    },
+    {
+      "name": "use_time_desc",
+      "value": "营业时间内可用"
+    },
+    {
+      "name": "validity",
+      "value": "有效期"
+    },
+    {
+      "name": "order_validity_desc",
+      "value": "订单当天有效，随时可退"
+    },
+    {
+      "name": "usage_rules",
+      "value": "使用规则"
+    },
+    {
+      "name": "usage_rules_desc1",
+      "value": "1、仅限堂食，不可使用包间"
+    },
+    {
+      "name": "usage_rules_desc2",
+      "value": "2、套餐菜品不可更换，单次消费不可与其他套餐和优惠券叠加使用"
+    },
+    {
+      "name": "currency_symbol",
+      "value": "￥"
+    },
+    {
+      "name": "selected",
+      "value": "已选："
+    },
+    {
+      "name": "add_car",
+      "value": "加入购物车"
+    },
+    {
+      "name": "good_details",
+      "value": "商品详情"
+    },
+    {
+      "name": "package_details",
+      "value": "套餐详情"
+    },
+    {
+      "name": "buy_notes",
+      "value": "购买须知"
+    },
+    {
+      "name": "sales_more",
+      "value": "月售100+"
+    },
+    {
+      "name": "month_sale",
+      "value": "月售%s"
+    },
+    {
+      "name": "discount",
+      "value": "%s折"
+    },
+    {
+      "name": "currency_symbol_post_params",
+      "value": "￥%d"
+    },
+    {
+      "name": "show_more",
+      "value": "查看更多"
+    },
+    {
+      "name": "agcit_huawei_catering_orders_goods_detail",
+      "value": "1.0.3"
+    },
+    {
+      "name": "agcittype_huawei_catering_orders_goods_detail",
+      "value": "serviceComponent"
+    }
+  ]
+}
