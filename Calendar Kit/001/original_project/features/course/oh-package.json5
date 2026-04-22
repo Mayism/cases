@@ -1,0 +1,16 @@
+{
+  "name": "course",
+  "version": "1.0.0",
+  "description": "Please describe the basic information.",
+  "main": "Index.ets",
+  "author": "",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "external_interactions": "file:../../common/external_interactions",
+    "module_recharge": "file:../../components/module_recharge",
+    "module_search_filter": "file:../../components/module_search_filter",
+    "dial_panel": "file:../../components/dial_panel",
+    "category_list": "file:../../components/category_list",
+    "search": "file:../../components/search"
+  }
+}

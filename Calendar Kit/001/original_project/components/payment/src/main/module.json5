@@ -1,0 +1,10 @@
+{
+  "module": {
+    "name": "payment",
+    "type": "har",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ]
+  }
+}

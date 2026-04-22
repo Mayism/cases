@@ -1,0 +1,11 @@
+{
+  "module": {
+    "name": "card",
+    "type": "har",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ],
+    "routerMap": "$profile:route_map"
+  }
+}

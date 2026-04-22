@@ -1,0 +1,34 @@
+case:
+  id: requirement_007
+  scenario: requirement
+  title: 健身房元服务预约详情页新增将预约添加到日程功能
+  prompt: 在course模块中实现将已预约的课程添加到日程的功能
+constraints:
+- id: HCK-REQ-007-01
+  name: 预约详情页必须提供添加至日程入口，并真实触发日历写入链路
+  priority: P0
+  rules:
+  - target: '**/pages/*.ets'
+    llm: 检查 course 模块的预约详情页是否在有效预约状态下提供“添加至日程”入口，并在点击后真实调用 CalendarKit 或工程内封装的日历管理能力完成日程写入，而不是只展示按钮、Toast 或空实现
+  - target: '**/book/*.ets'
+    ast:
+    - type: call
+      name: getCalendarPermission
+    llm: 检查预约详情页或相关预约记录详情页在执行添加至日程前是否接入了日历权限申请或等价权限校验链路，避免在未授权情况下直接写入失败
+  description: 预约详情页必须提供添加至日程入口，并真实触发日历写入链路
+- id: HCK-REQ-007-02
+  name: 写入日程的内容必须准确映射预约课程的核心信息
+  priority: P1
+  rules:
+  - target: '**/*'
+    llm: 检查写入日程时是否将预约课程名称、预约门店、预约日期、开始结束时间以及预约人或备注等核心预约信息映射到日程标题、时间段和描述字段中，避免创建出时间错误、内容缺失或与当前预约无关的日程事件
+  description: 写入日程的内容必须准确映射预约课程的核心信息
+- id: HCK-REQ-007-03
+  name: 工程配置中必须包含日历读写权限和添加日程能力所需的运行前提
+  priority: P1
+  rules:
+  - target: '**/module.json5'
+    llm: 检查工程配置是否声明了 ohos.permission.READ_CALENDAR 和 ohos.permission.WRITE_CALENDAR 两项基础权限，保证预约添加至日程链路具备运行前提
+  - target: '**/utils/*.ets'
+    llm: 检查工程内是否存在针对日历管理器获取、权限申请失败处理或权限二次申请的基础封装，避免页面只有入口但缺少稳定的 CalendarKit 接入支撑
+  description: 工程配置中必须包含日历读写权限和添加日程能力所需的运行前提

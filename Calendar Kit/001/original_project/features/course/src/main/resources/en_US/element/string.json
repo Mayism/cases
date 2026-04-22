@@ -1,0 +1,20 @@
+{
+  "string": [
+    {
+      "name": "page_show",
+      "value": "page from package"
+    },
+    {
+      "name": "schedule",
+      "value": "schedule"
+    },
+    {
+      "name": "internet",
+      "value": "internet"
+    },
+    {
+      "name": "agcit_huawei_fitness_center",
+      "value": "1.0.0"
+    }
+  ]
+}

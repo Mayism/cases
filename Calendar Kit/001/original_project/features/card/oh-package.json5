@@ -1,0 +1,16 @@
+{
+  "name": "card",
+  "version": "1.0.0",
+  "description": "Please describe the basic information.",
+  "main": "Index.ets",
+  "author": "",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "external_interactions": "file:../../common/external_interactions",
+    "module_search_filter": "file:../../components/module_search_filter",
+    "module_recharge": "file:../../components/module_recharge",
+    "course": "file:../course",
+    "dial_panel": "file:../../components/dial_panel",
+    "payment": "file:../../components/payment"
+  }
+}

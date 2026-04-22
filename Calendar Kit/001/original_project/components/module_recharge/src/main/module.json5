@@ -1,0 +1,11 @@
+{
+  "module": {
+    "name": "module_recharge",
+    "type": "har",
+    "description": "$string:module_desc",
+    "mainElement": "Module_rechargeAbility",
+    "deviceTypes": [
+      "default"
+    ],
+  }
+}
