@@ -1,0 +1,5 @@
+case:
+  id: requirement_001
+  scenario: requirement
+  title: 医保元服务需要在路由跳转name是'web'的时候，使用元服务web组件渲染H5
+  prompt: 按照元服务规范使用要求的web组件渲染，并且加载对应的loadUrl，loadUrl是本地的H5文件
