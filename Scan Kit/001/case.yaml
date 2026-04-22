@@ -1,27 +1,5 @@
 case:
   id: requirement_001
   scenario: requirement
-  title: 景区元服务首页新增获取景区附近停车场列表信息的功能
-  prompt: 以松山湖景区为例，在首页attraction_live模块中实现获取景区周边最近的3个停车场信息的功能，以列表形式展示，列表条目包含停车场名称、距离及导航。
-constraints:
-- id: HM-REQ-001-01
-  name: 首页必须展示景区附近停车场列表并完整呈现停车场名称、距离及导航入口
-  priority: P0
-  rules:
-  - target: '**/pages/*.ets'
-    llm: 检查首页 attraction_live 相关页面是否真实展示景区附近停车场列表，且每个列表条目至少包含停车场名称、距离信息和可点击的导航入口，而不是仅有静态文案、空状态占位或与停车无关的卡片
-  description: 首页必须展示景区附近停车场列表并完整呈现停车场名称、距离及导航入口
-- id: HM-REQ-001-02
-  name: 停车场结果必须围绕景区或当前位置进行近邻筛选，并突出最近的3个停车场
-  priority: P1
-  rules:
-  - target: '**/*'
-    llm: 检查停车场数据获取逻辑是否基于景区坐标或当前位置执行附近停车场查询，并在展示层明确限制或优先展示最近的3个停车场，而不是返回未排序的大量无关数据
-  description: 停车场结果必须围绕景区或当前位置进行近邻筛选，并突出最近的3个停车场
-- id: HM-REQ-001-03
-  name: 停车场导航入口必须能够发起真实导航或路线规划动作
-  priority: P1
-  rules:
-  - target: '**/*'
-    llm: 检查停车场列表中的导航入口是否绑定了真实的导航、地图拉起或路线规划行为，能够将目标停车场位置传入后续链路，而不是仅展示不可交互图标、按钮或占位文案
-  description: 停车场导航入口必须能够发起真实导航或路线规划动作
+  title: 点餐元服务首页扫一扫新增扫店铺桌号二维码跳转点餐页面的功能
+  prompt: 使用scan kit扫描获取storeId和tableId，根据storeId查询店铺信息并计算距离，然后根据tableId匹配到桌号信息，最后将storeId、tableId、storeInfo和tableInfo存储到storeModel里。
