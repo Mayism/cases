@@ -1,0 +1,68 @@
+{
+  "routerMap": [
+    {
+      "name": "AnswerPage",
+      "pageSourceFile": "src/main/ets/pages/AnswerPage.ets",
+      "buildFunction": "AnswerPageBuilder",
+      "data": {
+        "description": "this is AnswerPageBuilder"
+      }
+    },
+    {
+      "name": "FrequentQuestionPage",
+      "pageSourceFile": "src/main/ets/pages/FrequentQuestionPage.ets",
+      "buildFunction": "FrequentQuestionPageBuilder",
+      "data": {
+        "description": "this is FrequentQuestionPageBuilder"
+      }
+    },
+    {
+      "name": "MyCouponsPage",
+      "pageSourceFile": "src/main/ets/pages/MyCouponsPage.ets",
+      "buildFunction": "MyCouponsPageBuilder",
+      "data": {
+        "description": "this is MyCouponsPageBuilder"
+      }
+    },
+    {
+      "name": "MyWalletPage",
+      "pageSourceFile": "src/main/ets/pages/MyWalletPage.ets",
+      "buildFunction": "MyWalletPageBuilder",
+      "data": {
+        "description": "this is MyWalletPageBuilder"
+      }
+    },
+    {
+      "name": "RechargeRecordPage",
+      "pageSourceFile": "src/main/ets/pages/RechargeRecordPage.ets",
+      "buildFunction": "RechargeRecordPageBuilder",
+      "data": {
+        "description": "this is RechargeRecordPageBuilder"
+      }
+    },
+    {
+      "name": "WalletTermsPage",
+      "pageSourceFile": "src/main/ets/pages/WalletTermsPage.ets",
+      "buildFunction": "WalletTermsPageBuilder",
+      "data": {
+        "description": "this is WalletTermsPageBuilder"
+      }
+    },
+    {
+      "name": "OrderPage",
+      "pageSourceFile": "src/main/ets/pages/OrderPage.ets",
+      "buildFunction": "orderPageBuilder",
+      "data": {
+        "description": "this is orderPageBuilder"
+      }
+    },
+    {
+      "name": "MyPointsPage",
+      "pageSourceFile": "src/main/ets/pages/MyPointsPage.ets",
+      "buildFunction": "MyPointsPageBuilder",
+      "data": {
+        "description": "this is MyPointsPageBuilder"
+      }
+    }
+  ]
+}

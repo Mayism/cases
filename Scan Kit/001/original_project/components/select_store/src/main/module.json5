@@ -1,0 +1,9 @@
+{
+  "module": {
+    "name": "select_store",
+    "type": "har",
+    "deviceTypes": [
+      "default"
+    ]
+  }
+}

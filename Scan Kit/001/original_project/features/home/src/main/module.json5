@@ -1,0 +1,37 @@
+{
+  "module": {
+    "name": "home",
+    "type": "shared",
+    "description": "$string:shared_desc",
+    "deviceTypes": [
+      "phone"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": true,
+    "routerMap": "$profile:router_map",
+    "requestPermissions": [
+      {
+        "name": "ohos.permission.LOCATION",
+        //申请获取地理位置权限
+        "reason": "$string:location_permission",
+        "usedScene": {
+          "abilities": [
+            "EntryAbility"
+          ],
+          "when": "inuse"
+        }
+      },
+      {
+        "name": "ohos.permission.APPROXIMATELY_LOCATION",
+        //申请获取模糊地理位置权限
+        "reason": "$string:location_permission",
+        "usedScene": {
+          "abilities": [
+            "EntryAbility"
+          ],
+          "when": "inuse"
+        }
+      },
+    ]
+  }
+}

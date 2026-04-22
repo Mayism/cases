@@ -1,0 +1,20 @@
+{
+  "routerMap": [
+    {
+      "name": "OrderDetailPage",
+      "pageSourceFile": "src/main/ets/pages/OrderDetailPage.ets",
+      "buildFunction": "OrderDetailPageBuilder",
+      "data": {
+        "description": "this is OrderDetailPageBuilder"
+      }
+    },
+    {
+      "name": "HwMapPage",
+      "pageSourceFile": "src/main/ets/pages/HwMapPage.ets",
+      "buildFunction": "HwMapPageBuilder",
+      "data": {
+        "description": "this is HwMapPageBuilder"
+      }
+    }
+  ]
+}
