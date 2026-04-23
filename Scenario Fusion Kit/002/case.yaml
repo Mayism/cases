@@ -1,5 +1,5 @@
 case:
-    id: requirement_001
+    id: requirement_002
     scenario: requirement
     title: 新闻资讯元服务"我的"页面新增头像选择的功能
     prompt: 在mine模块的"我的"页面使用 FunctionalButton 实现头像选择的功能，将新选择的头像保存到沙箱，同时更新用户信息中的头像信息。
