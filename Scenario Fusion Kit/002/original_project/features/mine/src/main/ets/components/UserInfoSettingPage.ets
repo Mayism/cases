@@ -1,11 +1,11 @@
-import { RouterModule, UserInfoModel } from 'commonlib'
+import { RouterModule, UserInfoModel, Logger } from 'commonlib'
 import { BaseTitle, GlobalDialog } from 'componentlib'
-import fs from '@ohos.file.fs';
-import { util } from '@kit.ArkTS';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { AppStorageV2, PersistenceV2 } from '@kit.ArkUI';
+import { FunctionalButton, functionalButtonComponentManager } from '@kit.ScenarioFusionKit';
 import { maskPhone } from '../utils/Util';
 import { UserInfoStorage } from '../viewModels/MainPageVM';
-import { AppStorageV2, PersistenceV2 } from '@kit.ArkUI';
+import { saveAvatarToSandbox, getAvatarDisplayPath } from '../utils/AvatarUtil';
 
 
 @Builder
@@ -16,20 +16,10 @@ export function userInfoSettingPageBuilder() {
 @ComponentV2
 export struct UserInfoSettingPage {
   @Local userInfo: UserInfoModel = AppStorageV2.connect(UserInfoModel, () => new UserInfoModel())!;
+  private filesDir: string = '';
 
-  getUserAvatar(): ResourceStr {
-    if (this.userInfo.avatar) {
-      // 判断是否是沙箱路径
-      if (this.userInfo.avatar.startsWith('file://')) {
-        let sandboxPath = this.userInfo.avatar.split('file://')[1]
-        // 判断沙箱路径的图片是否存在，不存在，则使用默认头像
-        if (!fs.accessSync(sandboxPath)) {
-          return $r('app.media.ic_default_hd')
-        }
-      }
-      return this.userInfo.avatar || $r('app.media.ic_default_hd')
-    }
-    return $r('app.media.ic_default_hd')
+  aboutToAppear(): void {
+    this.filesDir = getContext(this).filesDir;
   }
 
   build() {
@@ -83,7 +73,35 @@ export struct UserInfoSettingPage {
   @Builder
   AvatarRightView() {
     Row({space: 4}) {
-
+      FunctionalButton({
+        params: {
+          openType: functionalButtonComponentManager.OpenType.CHOOSE_AVATAR,
+          label: '',
+          styleOption: {
+            styleConfig: new functionalButtonComponentManager.ButtonConfig()
+              .type(ButtonType.Normal)
+              .backgroundImage(getAvatarDisplayPath(this.userInfo.avatar))
+              .backgroundImageSize(ImageSize.Cover)
+              .width(40)
+              .height(40)
+              .borderRadius(20)
+              .backgroundColor('#E5E5E5')
+          },
+        },
+        controller: new functionalButtonComponentManager.FunctionalButtonController().onChooseAvatar((err, data) => {
+          if (err) {
+            Logger.error('[UserInfoSettingPage]', 'Choose avatar error: ' + err.message);
+            return;
+          }
+          const avatarUri = data.avatarUri;
+          if (avatarUri) {
+            const sandboxPath = saveAvatarToSandbox(avatarUri, this.filesDir);
+            if (sandboxPath) {
+              this.userInfo.avatar = sandboxPath;
+            }
+          }
+        })
+      })
       Image($r('app.media.right_arrow'))
         .width(24)
         .height(24)

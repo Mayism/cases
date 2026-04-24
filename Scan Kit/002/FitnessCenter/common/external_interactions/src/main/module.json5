@@ -1,9 +1,0 @@
-{
-  "module": {
-    "name": "external_interactions",
-    "type": "har",
-    "deviceTypes": [
-      "default"
-    ]
-  }
-}

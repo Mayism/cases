@@ -1,14 +1,15 @@
-import fs from '@ohos.file.fs';
 import { util } from '@kit.ArkTS';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { authentication } from '@kit.AccountKit';
 import { AppStorageV2, promptAction } from '@kit.ArkUI';
+import { FunctionalButton, functionalButtonComponentManager } from '@kit.ScenarioFusionKit';
 import { RouterModule, RouterMap, PreferencesUtil, Logger, UserInfoModel, LoginModel, AccountUtil } from 'commonlib';
 import { BaseTitle, GlobalDialog } from 'componentlib';
 import { GetUserInfoResp, HttpRequestApi } from 'network';
 import { QuitLoginDialog } from '../viewModels/QuitLoginDialog';
 import { MainPageVM } from '../viewModels/MainPageVM';
 import { maskPhone } from '../utils/Util';
+import { saveAvatarToSandbox, getAvatarDisplayPath } from '../utils/AvatarUtil';
 
 const TAG = '[MinePage]'
 
@@ -87,8 +88,10 @@ struct UserMsgCard {
   @Local userTel: string = ''
   @Local userInfo: UserInfoModel = AppStorageV2.connect(UserInfoModel, () => new UserInfoModel())!;
   @Local loginInfo: LoginModel = AppStorageV2.connect(LoginModel, () => new LoginModel())!
+  private filesDir: string = '';
 
   aboutToAppear(): void {
+    this.filesDir = getContext(this).filesDir;
     this.change()
   }
 
@@ -99,26 +102,39 @@ struct UserMsgCard {
     }
   }
 
-  getUserAvatar(): ResourceStr {
-    if (this.userInfo.avatar) {
-      // 判断是否是沙箱路径
-      if (this.userInfo.avatar.startsWith('file://')) {
-        let sandboxPath = this.userInfo.avatar.split('file://')[1]
-        // 判断沙箱路径的图片是否存在，不存在，则使用默认头像
-        if (!fs.accessSync(sandboxPath)) {
-          return $r('app.media.ic_default_hd')
-        }
-      }
-      return this.userInfo.avatar || $r('app.media.ic_default_hd')
-    }
-    return $r('app.media.ic_default_hd')
-  }
-
   build() {
     Row() {
       Row() {
         if (this.loginInfo.isLogin) {
-          
+          FunctionalButton({
+            params: {
+              openType: functionalButtonComponentManager.OpenType.CHOOSE_AVATAR,
+              label: '',
+              styleOption: {
+                styleConfig: new functionalButtonComponentManager.ButtonConfig()
+                  .type(ButtonType.Normal)
+                  .backgroundImage(getAvatarDisplayPath(this.userInfo.avatar))
+                  .backgroundImageSize(ImageSize.Cover)
+                  .width(64)
+                  .height(64)
+                  .borderRadius(32)
+                  .backgroundColor('#E5E5E5')
+              },
+            },
+            controller: new functionalButtonComponentManager.FunctionalButtonController().onChooseAvatar((err, data) => {
+              if (err) {
+                Logger.error(TAG, 'Choose avatar error: ' + err.message);
+                return;
+              }
+              const avatarUri = data.avatarUri;
+              if (avatarUri) {
+                const sandboxPath = saveAvatarToSandbox(avatarUri, this.filesDir);
+                if (sandboxPath) {
+                  this.userInfo.avatar = sandboxPath;
+                }
+              }
+            })
+          })
         } else {
           Image($r('app.media.ic_default_hd'))
             .width(64)
