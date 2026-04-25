@@ -1,0 +1,69 @@
+{
+  "routerMap": [
+    {
+      "name": "PlateNumberPage",
+      "pageSourceFile": "src/main/ets/pages/PlateNumberPage.ets",
+      "buildFunction": "PlateNumberPageBuilder"
+    },
+    {
+      "name": "ParkingPaymentPage",
+      "pageSourceFile": "src/main/ets/pages/ParkingPaymentPage.ets",
+      "buildFunction": "ParkingPaymentPageBuilder"
+    },
+    {
+      "name": "PlateNumberMgtPage",
+      "pageSourceFile": "src/main/ets/pages/PlateNumberMgtPage.ets",
+      "buildFunction": "PlateNumberMgtPageBuilder"
+    },
+    {
+      "name": "FindCarPage",
+      "pageSourceFile": "src/main/ets/pages/FindCarPage.ets",
+      "buildFunction": "FindCarPageBuilder"
+    },
+    {
+      "name": "FindCarResultPage",
+      "pageSourceFile": "src/main/ets/pages/FindCarResultPage.ets",
+      "buildFunction": "FindCarResultPageBuilder"
+    },
+    {
+      "name": "WebPage",
+      "pageSourceFile": "src/main/ets/pages/WebPage.ets",
+      "buildFunction": "WebPageBuilder"
+    },
+    {
+      "name": "PayRecordPage",
+      "pageSourceFile": "src/main/ets/pages/PayRecordPage.ets",
+      "buildFunction": "PayRecordPageBuilder"
+    },
+    {
+      "name": "PayDetailPage",
+      "pageSourceFile": "src/main/ets/pages/PayDetailPage.ets",
+      "buildFunction": "PayDetailPageBuilder"
+    },
+    {
+      "name": "PaySuccessPage",
+      "pageSourceFile": "src/main/ets/pages/PaySuccessPage.ets",
+      "buildFunction": "PaySuccessPageBuilder"
+    },
+    {
+      "name": "ConsiderateServicePage",
+      "pageSourceFile": "src/main/ets/pages/ConsiderateServicePage.ets",
+      "buildFunction": "ConsiderateServicePageBuilder"
+    },
+    {
+      "name": "ServiceDetailPage",
+      "pageSourceFile": "src/main/ets/pages/ServiceDetailPage.ets",
+      "buildFunction": "ServiceDetailPageBuilder"
+    },
+    {
+      "name": "StoreGuidePage",
+      "pageSourceFile": "src/main/ets/pages/StoreGuidePage.ets",
+      "buildFunction": "StoreGuidePageBuilder"
+    },
+    {
+      "name": "StoreGuideDetailPage",
+      "pageSourceFile": "src/main/ets/pages/StoreGuideDetailPage.ets",
+      "buildFunction": "StoreGuideDetailPageBuilder"
+    }
+  ]
+}

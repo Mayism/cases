@@ -1,0 +1,33 @@
+{
+  "string": [
+    {
+      "name": "keyBord_collapse",
+      "value": "Hide",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "keyBord_complete",
+      "value": "Done",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "new_energy",
+      "value": "NEV",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "agcit_huawei_shopping_mall_module_keyboard",
+      "value": "1.0.2"
+    },
+    {
+      "name": "agcittype_huawei_shopping_mall_module_keyboard",
+      "value": "serviceComponent"
+    }
+  ]
+}

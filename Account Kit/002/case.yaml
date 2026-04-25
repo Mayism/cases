@@ -1,0 +1,5 @@
+case:
+  id: requirement_001
+  scenario: requirement
+  title: 商场元服务模板新增关联账号和取消关联的功能
+  prompt: 在我的页面中补充关联账号和取消关联的功能。点击按钮后拉起关联手机号页面进行关联，再次点击按钮取消关联。

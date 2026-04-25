@@ -1,0 +1,108 @@
+{
+  "string": [
+    {
+      "name": "shared_desc",
+      "value": "description"
+    },
+    {
+      "name": "disassociate",
+      "value": "解除关联"
+    },
+    {
+      "name": "associate_account",
+      "value": "关联账号"
+    },
+    {
+      "name": "wallet",
+      "value": "钱包"
+    },
+    {
+      "name": "points",
+      "value": "积分"
+    },
+    {
+      "name": "points_param",
+      "value": "%s分"
+    },
+    {
+      "name": "my_center",
+      "value": "我的中心"
+    },
+    {
+      "name": "my_order",
+      "value": "我的订单"
+    },
+    {
+      "name": "my_coupon",
+      "value": "我的券包"
+    },
+    {
+      "name": "help_center",
+      "value": "帮助中心"
+    },
+    {
+      "name": "faqs",
+      "value": "常见问题"
+    },
+    {
+      "name": "customer_phone",
+      "value": "客服电话"
+    },
+    {
+      "name": "nickname",
+      "value": "昵称"
+    },
+    {
+      "name": "sex",
+      "value": "性别"
+    },
+    {
+      "name": "complete",
+      "value": "完成"
+    },
+    {
+      "name": "modify_success",
+      "value": "修改成功~"
+    },
+    {
+      "name": "modify_failed",
+      "value": "修改失败！"
+    },
+    {
+      "name": "inputMsg",
+      "value": "请输入信息"
+    },
+    {
+      "name": "input_nickname",
+      "value": "请输入昵称"
+    },
+    {
+      "name": "address_tel",
+      "value": "手机号"
+    },
+    {
+      "name": "setting",
+      "value": "设置"
+    },
+    {
+      "name": "no_relative_account_msg",
+      "value": "请先关联账号"
+    },
+    {
+      "name": "privacy",
+      "value": "隐私协议"
+    },
+    {
+      "name": "personal_info",
+      "value": "个人信息"
+    },
+    {
+      "name": "clear_cache",
+      "value": "清除缓存"
+    },
+    {
+      "name": "agcit_huawei_shopping_mall",
+      "value": "1.0.0"
+    }
+  ]
+}

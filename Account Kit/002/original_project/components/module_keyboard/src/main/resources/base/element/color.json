@@ -1,0 +1,24 @@
+{
+  "color": [
+    {
+      "name": "new_energy_background",
+      "value": "#1A64BB5C"
+    },
+    {
+      "name": "keyBord_background",
+      "value": "#DEE0E6"
+    },
+    {
+      "name": "del_background",
+      "value": "#BCC0C7"
+    },
+    {
+      "name": "key_shadow",
+      "value": "#90949C"
+    },
+    {
+      "name": "key_background",
+      "value": "#FFFFFF"
+    }
+  ]
+}
