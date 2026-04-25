@@ -1,0 +1,1854 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>课程助手 - HarmonyOS 元服务原型</title>
+<style>
+  :root {
+    --primary: #ED6F21;
+    --primary-light: #FFC39F;
+    --primary-gradient: linear-gradient(270deg, #FFED6F21 0%, #FFFFC39F 100%);
+    --primary-gradient-v: linear-gradient(180deg, #ED6F21 0%, #FFC39F 100%);
+    --bg-primary: #FFFFFF;
+    --bg-secondary: #F1F3F5;
+    --bg-tertiary: #E8EAED;
+    --card-bg: #FFFFFF;
+    --divider: #E8EAED;
+    --font-primary: #1A1A1A;
+    --font-secondary: #666666;
+    --font-tertiary: #999999;
+    --font-on-primary: #FFFFFF;
+    --icon-primary: #1A1A1A;
+    --icon-secondary: #999999;
+    --error-color: #E84026;
+    --success-color: #64BB5C;
+    --course-1: #FF6B6B;
+    --course-2: #4ECDC4;
+    --course-3: #45B7D1;
+    --course-4: #96CEB4;
+    --course-5: #FFEAA7;
+    --course-6: #DDA0DD;
+    --course-7: #98D8C8;
+    --course-8: #F7DC6F;
+    --course-9: #BB8FCE;
+    --course-10: #85C1E9;
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 20px;
+    --radius-round: 24px;
+    --shadow-card: 0 1px 6px rgba(0,0,0,0.08);
+    --tab-height: 48px;
+    --title-bar-height: 56px;
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 12px;
+    --spacing-lg: 16px;
+    --spacing-xl: 24px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'HarmonyOS Sans', 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg-secondary);
+    color: var(--font-primary);
+    -webkit-font-smoothing: antialiased;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+  }
+
+  .app-container {
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-secondary);
+    position: relative;
+  }
+
+  /* Navigation */
+  .nav-stack {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .page {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: var(--bg-secondary);
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .page.active { display: flex; }
+
+  /* Title Bar */
+  .title-bar {
+    height: var(--title-bar-height);
+    display: flex;
+    align-items: center;
+    padding: 0 var(--spacing-lg);
+    background: var(--bg-primary);
+    flex-shrink: 0;
+    z-index: 10;
+  }
+  .title-bar .back-btn {
+    width: 24px; height: 24px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; margin-right: var(--spacing-sm);
+    font-size: 20px; color: var(--font-primary);
+  }
+  .title-bar .title {
+    font-size: 18px; font-weight: 600; color: var(--font-primary);
+    flex: 1;
+  }
+  .title-bar.transparent { background: transparent; }
+
+  /* Tab Bar */
+  .tab-bar {
+    height: var(--tab-height);
+    display: flex;
+    background: var(--bg-primary);
+    border-top: 0.5px solid var(--divider);
+    flex-shrink: 0;
+    z-index: 100;
+  }
+  .tab-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    gap: 4px;
+  }
+  .tab-item .tab-icon { width: 24px; height: 24px; }
+  .tab-item .tab-label {
+    font-size: 10px;
+    color: var(--font-secondary);
+    font-weight: 400;
+  }
+  .tab-item.active .tab-label {
+    color: var(--primary);
+    font-weight: 600;
+  }
+
+  /* Scroll Area */
+  .scroll-area {
+    flex: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .scroll-area::-webkit-scrollbar { display: none; }
+
+  /* ===== HOME TAB ===== */
+  .home-content { padding: 0 var(--spacing-lg) var(--spacing-md); }
+
+  .banner-swiper {
+    width: 100%;
+    aspect-ratio: 21/10;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: linear-gradient(135deg, #FF9A56 0%, #FFC39F 100%);
+    margin-bottom: var(--spacing-md);
+    position: relative;
+  }
+  .banner-swiper .banner-text {
+    position: absolute;
+    bottom: 16px; left: 16px;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  }
+  .banner-dots {
+    position: absolute;
+    bottom: 8px;
+    right: 16px;
+    display: flex;
+    gap: 4px;
+  }
+  .banner-dots .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.5);
+  }
+  .banner-dots .dot.active {
+    background: white;
+    width: 16px;
+    border-radius: 3px;
+  }
+
+  .checkin-btn {
+    width: 100%;
+    height: 96px;
+    border-radius: var(--radius-lg);
+    background: linear-gradient(270deg, #ED6F21 0%, #FFC39F 100%);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  .checkin-btn .checkin-text {
+    color: white;
+    font-size: 20px;
+    font-weight: 700;
+  }
+  .checkin-btn .checkin-arrow {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.3);
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-size: 18px;
+  }
+  .checkin-btn .checkin-icon {
+    position: absolute;
+    right: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 48px;
+    opacity: 0.15;
+  }
+
+  .course-overview {
+    background: var(--card-bg);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+  }
+  .course-overview-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-md);
+  }
+  .segment-btn {
+    display: flex;
+    background: var(--bg-tertiary);
+    border-radius: var(--radius-round);
+    padding: 2px;
+    width: 60%;
+  }
+  .segment-btn .seg-item {
+    flex: 1;
+    text-align: center;
+    padding: 8px 0;
+    font-size: 13px;
+    color: var(--font-secondary);
+    cursor: pointer;
+    border-radius: var(--radius-round);
+    transition: all 0.2s;
+    font-weight: 500;
+  }
+  .segment-btn .seg-item.active {
+    background: var(--primary);
+    color: white;
+    font-weight: 700;
+  }
+  .calendar-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    gap: 3px;
+  }
+  .calendar-link .cal-icon { font-size: 16px; color: var(--font-primary); }
+  .calendar-link .cal-text { font-size: 11px; color: var(--font-primary); }
+
+  .course-list-header {
+    display: flex;
+    align-items: center;
+    margin-top: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+  }
+  .course-list-header .day-label {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--font-primary);
+  }
+  .course-list-header .count-label {
+    font-size: 13px;
+    font-weight: 700;
+    margin-left: 4px;
+  }
+  .course-list-header .count-label.has-courses { color: var(--primary); }
+  .course-list-header .count-label.no-courses { color: var(--font-secondary); }
+
+  .course-card {
+    display: flex;
+    align-items: stretch;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: var(--bg-secondary);
+    margin-bottom: var(--spacing-md);
+    cursor: pointer;
+    transition: transform 0.15s;
+  }
+  .course-card:active { transform: scale(0.98); }
+  .course-card .color-bar {
+    width: 4px;
+    flex-shrink: 0;
+  }
+  .course-card .card-content {
+    flex: 1;
+    padding: var(--spacing-md);
+  }
+  .course-card .card-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--font-primary);
+    margin-bottom: 4px;
+  }
+  .course-card .card-time {
+    font-size: 12px;
+    color: var(--font-secondary);
+    margin-bottom: 2px;
+  }
+  .course-card .card-info {
+    font-size: 12px;
+    color: var(--font-tertiary);
+  }
+  .course-card.finished { opacity: 0.5; }
+
+  .empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 0;
+  }
+  .empty-state .empty-icon {
+    font-size: 64px;
+    color: var(--bg-tertiary);
+    margin-bottom: var(--spacing-md);
+  }
+  .empty-state .empty-text {
+    font-size: 15px;
+    color: var(--font-tertiary);
+    margin-bottom: var(--spacing-lg);
+  }
+  .empty-state .empty-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: var(--radius-round);
+    font-size: 14px;
+    cursor: pointer;
+  }
+
+  /* ===== MINE TAB ===== */
+  .mine-header {
+    background: var(--bg-primary);
+    border-radius: 0 0 32px 32px;
+    padding: 0 var(--spacing-xl) var(--spacing-xl);
+    position: relative;
+    overflow: hidden;
+  }
+  .mine-header .cap-icon {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    font-size: 86px;
+    opacity: 0.08;
+  }
+  .mine-user-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .mine-user-info {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+  }
+  .mine-avatar {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: var(--bg-tertiary);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; color: var(--font-tertiary);
+    overflow: hidden;
+  }
+  .mine-avatar img {
+    width: 100%; height: 100%; object-fit: cover;
+  }
+  .mine-name-col { display: flex; flex-direction: column; gap: 6px; }
+  .mine-nickname {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--font-primary);
+    max-width: 140px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .mine-phone {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 14px;
+    color: var(--font-secondary);
+  }
+  .mine-phone .phone-icon { font-size: 14px; }
+
+  .bind-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 12px;
+    border-radius: var(--radius-round);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+  }
+  .bind-btn.link {
+    background: var(--bg-tertiary);
+    color: var(--primary);
+  }
+  .bind-btn.unlink {
+    background: var(--primary);
+    color: white;
+  }
+
+  /* ===== TIMETABLE PAGE ===== */
+  .timetable-header {
+    background: var(--card-bg);
+    padding: 0 var(--spacing-lg);
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .timetable-header .week-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .timetable-header .week-num {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--primary);
+  }
+  .timetable-header .week-range {
+    font-size: 13px;
+    color: var(--font-secondary);
+    margin-top: 4px;
+  }
+  .timetable-header .header-actions {
+    display: flex;
+    gap: var(--spacing-lg);
+  }
+  .timetable-header .action-btn {
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    background: var(--primary);
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-size: 14px; font-weight: 700;
+    cursor: pointer;
+  }
+
+  .timetable-grid {
+    background: var(--card-bg);
+    padding: var(--spacing-md);
+  }
+  .grid-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--spacing-sm);
+  }
+  .grid-header .month-col {
+    width: 40px;
+    text-align: center;
+    margin-right: var(--spacing-sm);
+  }
+  .grid-header .month-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+  }
+  .grid-header .month-suffix {
+    font-size: 11px;
+    color: #333;
+  }
+  .grid-header .weekday-cols {
+    display: flex;
+    flex: 1;
+    gap: 2px;
+  }
+  .grid-header .weekday-col {
+    flex: 1;
+    text-align: center;
+    padding: 4px 0;
+    border-radius: var(--radius-sm);
+  }
+  .weekday-col .day-name {
+    font-size: 13px;
+    color: #333;
+  }
+  .weekday-col .day-date {
+    font-size: 11px;
+    color: #333;
+    margin-top: 4px;
+  }
+  .weekday-col.today {
+    background: var(--primary);
+  }
+  .weekday-col.today .day-name,
+  .weekday-col.today .day-date {
+    color: white;
+  }
+
+  .daypart-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+    padding: 8px 0 4px 0;
+  }
+  .period-row {
+    display: flex;
+    align-items: center;
+    margin: 2px 0;
+  }
+  .period-num {
+    width: 40px;
+    text-align: center;
+    font-size: 13px;
+    color: #333;
+    background: var(--bg-secondary);
+    border-radius: var(--radius-md);
+    height: 36px;
+    line-height: 36px;
+    margin-right: var(--spacing-sm);
+    flex-shrink: 0;
+  }
+  .period-cells {
+    display: flex;
+    flex: 1;
+    gap: 2px;
+  }
+  .period-cell {
+    flex: 1;
+    height: 36px;
+    border-radius: var(--radius-sm);
+    position: relative;
+  }
+  .period-cell .course-block {
+    position: absolute;
+    left: 2px; right: 2px;
+    border-radius: var(--radius-sm);
+    border: 1px solid;
+    padding: 2px 4px;
+    font-size: 10px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  /* ===== COURSE FORM ===== */
+  .form-banner {
+    width: 100%;
+    height: 104px;
+    border-radius: var(--radius-lg);
+    background: linear-gradient(90deg, #ED6F21, #FFC39F);
+    padding: var(--spacing-lg);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-sm);
+  }
+  .form-banner .banner-text .semester-label {
+    font-size: 14px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: var(--spacing-md);
+  }
+  .form-banner .banner-text .semester-value {
+    font-size: 14px;
+    font-weight: 700;
+    color: white;
+  }
+  .form-banner .banner-icon {
+    font-size: 80px;
+    opacity: 0.15;
+    color: white;
+  }
+
+  .form-section {
+    background: var(--card-bg);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
+  }
+  .form-section .section-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--font-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 36px;
+    padding: 0 var(--spacing-sm);
+  }
+  .form-section .section-title .delete-btn {
+    width: 24px; height: 24px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; color: var(--font-primary);
+    font-size: 18px;
+  }
+
+  .form-row {
+    display: flex;
+    align-items: center;
+    padding: 12px var(--spacing-sm);
+    border-bottom: 0.5px solid var(--divider);
+  }
+  .form-row:last-child { border-bottom: none; }
+  .form-row .row-label {
+    font-size: 14px;
+    color: var(--font-primary);
+    width: 72px;
+    flex-shrink: 0;
+  }
+  .form-row .row-value {
+    flex: 1;
+    font-size: 14px;
+    color: var(--font-secondary);
+    text-align: right;
+  }
+  .form-row .row-value input {
+    width: 100%;
+    border: none;
+    text-align: right;
+    font-size: 14px;
+    color: var(--font-primary);
+    outline: none;
+    background: transparent;
+  }
+  .form-row .row-value input::placeholder {
+    color: var(--font-tertiary);
+  }
+  .form-row .row-arrow {
+    margin-left: 4px;
+    color: var(--font-tertiary);
+    font-size: 12px;
+  }
+
+  .add-more-btn {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 8px 0;
+    color: var(--primary);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    gap: 4px;
+  }
+
+  .save-btn {
+    width: 100%;
+    max-width: 480px;
+    height: 40px;
+    border-radius: var(--radius-round);
+    background: var(--primary);
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    margin: var(--spacing-lg) 0;
+  }
+
+  /* ===== COURSE DETAIL ===== */
+  .detail-banner {
+    width: 100%;
+    height: 160px;
+    background: linear-gradient(180deg, rgba(237,111,33,0.4) 0%, var(--bg-secondary) 100%);
+    position: absolute;
+    top: 0; left: 0; right: 0;
+  }
+  .detail-content {
+    position: relative;
+    z-index: 1;
+    padding: 0 var(--spacing-lg);
+  }
+  .detail-name {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--font-primary);
+    margin: 8px 0;
+  }
+  .detail-arrangement {
+    background: var(--bg-primary);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    margin-top: var(--spacing-sm);
+  }
+  .detail-arr-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--font-secondary);
+    margin-bottom: var(--spacing-sm);
+  }
+  .detail-row {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin: var(--spacing-sm) 0;
+  }
+  .detail-row .detail-icon {
+    font-size: 16px;
+    color: var(--icon-secondary);
+  }
+  .detail-row .detail-text {
+    font-size: 13px;
+    color: var(--font-secondary);
+  }
+  .detail-divider {
+    border: none;
+    border-top: 0.5px solid var(--divider);
+    margin: var(--spacing-sm) 0;
+  }
+
+  .detail-actions {
+    display: flex;
+    padding: 0 var(--spacing-lg);
+    background: var(--bg-primary);
+  }
+  .detail-action-btn {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 52px;
+    cursor: pointer;
+    gap: 4px;
+  }
+  .detail-action-btn .action-icon { font-size: 24px; color: var(--icon-primary); }
+  .detail-action-btn .action-label { font-size: 11px; color: var(--font-primary); }
+
+  /* ===== CHECKIN PAGE ===== */
+  .checkin-bg {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 25%;
+    background: linear-gradient(180deg, var(--primary) 0%, var(--bg-secondary) 100%);
+  }
+  .checkin-content {
+    position: relative;
+    z-index: 1;
+    padding: 0 var(--spacing-lg);
+  }
+  .checkin-card {
+    background: white;
+    border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+    margin: 0 28px;
+    padding: var(--spacing-lg) var(--spacing-lg) 24px;
+    position: relative;
+  }
+  .checkin-card-bg {
+    width: calc(100% - 56px);
+    margin-left: 28px;
+    height: 80px;
+    background: linear-gradient(135deg, #FFE0B2, #FFCC80);
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    position: relative;
+  }
+  .checkin-input-area {
+    background: white;
+    border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+    margin: -10px 28px 0;
+    padding: var(--spacing-lg) var(--spacing-lg) 24px;
+    text-align: center;
+  }
+  .checkin-input-label {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--font-primary);
+    margin-bottom: var(--spacing-lg);
+  }
+  .code-inputs {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
+  }
+  .code-input {
+    width: 40px; height: 48px;
+    border: 2px solid var(--bg-tertiary);
+    border-radius: var(--radius-sm);
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .code-input:focus { border-color: var(--primary); }
+  .code-input.filled { border-color: var(--primary); }
+  .code-input.error { border-color: var(--error-color); }
+
+  .error-tip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-xs);
+    color: var(--error-color);
+    font-size: 12px;
+    margin-top: var(--spacing-sm);
+  }
+
+  .checkin-success {
+    text-align: center;
+    padding: var(--spacing-lg);
+  }
+  .checkin-success .course-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--font-primary);
+  }
+  .checkin-success .success-icon {
+    font-size: 64px;
+    color: var(--success-color);
+    margin: var(--spacing-md) 0;
+  }
+  .checkin-success .success-text {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--font-primary);
+  }
+
+  .checkin-tips {
+    margin: var(--spacing-xl) 28px 0;
+  }
+  .checkin-tips .tips-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--font-primary);
+  }
+  .checkin-tips .tips-content {
+    font-size: 12px;
+    color: var(--font-secondary);
+    margin-top: var(--spacing-md);
+    line-height: 1.8;
+  }
+
+  .checkin-submit-btn {
+    width: calc(100% - 56px);
+    height: 40px;
+    margin: 38px 28px 0;
+    border-radius: var(--radius-round);
+    background: var(--primary);
+    color: white;
+    font-size: 15px;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+  .checkin-submit-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  /* ===== MODAL / DIALOG ===== */
+  .modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.4);
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+  }
+  .modal-overlay.active { display: flex; }
+  .modal-dialog {
+    background: white;
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    width: 80%;
+    max-width: 320px;
+    text-align: center;
+  }
+  .modal-dialog .modal-msg {
+    font-size: 15px;
+    color: var(--font-primary);
+    margin-bottom: var(--spacing-xl);
+    line-height: 1.5;
+  }
+  .modal-dialog .modal-btns {
+    display: flex;
+    gap: var(--spacing-lg);
+    justify-content: center;
+  }
+  .modal-dialog .modal-btn {
+    padding: 8px 24px;
+    border-radius: var(--radius-round);
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+  }
+  .modal-btn.cancel {
+    background: var(--bg-tertiary);
+    color: var(--font-primary);
+  }
+  .modal-btn.danger {
+    background: var(--error-color);
+    color: white;
+  }
+  .modal-btn.confirm {
+    background: var(--primary);
+    color: white;
+  }
+
+  /* Toast */
+  .toast {
+    position: fixed;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.7);
+    color: white;
+    padding: 10px 24px;
+    border-radius: var(--radius-round);
+    font-size: 14px;
+    z-index: 2000;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+  }
+  .toast.show { opacity: 1; }
+
+  /* Loading */
+  .loading-mask {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(255,255,255,0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 500;
+  }
+  .loading-spinner {
+    width: 32px; height: 32px;
+    border: 3px solid var(--bg-tertiary);
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* Menu */
+  .menu-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 900;
+    display: none;
+  }
+  .menu-overlay.active { display: block; }
+  .menu-popup {
+    position: absolute;
+    background: white;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    overflow: hidden;
+    width: 140px;
+  }
+  .menu-popup .menu-item {
+    padding: 14px 12px;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--font-primary);
+    cursor: pointer;
+    border-bottom: 0.5px solid var(--divider);
+  }
+  .menu-popup .menu-item:last-child { border-bottom: none; }
+
+  /* Week Picker Sheet */
+  .sheet-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.4);
+    z-index: 800;
+    display: none;
+  }
+  .sheet-overlay.active { display: block; }
+  .sheet-content {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: white;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    padding: var(--spacing-xl);
+    z-index: 801;
+    max-height: 60vh;
+    display: none;
+  }
+  .sheet-content.active { display: block; }
+  .sheet-title {
+    font-size: 17px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+  }
+  .week-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-lg);
+  }
+  .week-grid .week-cell {
+    padding: 10px 0;
+    text-align: center;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    cursor: pointer;
+    background: var(--bg-secondary);
+    color: var(--font-primary);
+  }
+  .week-grid .week-cell.selected {
+    background: var(--primary);
+    color: white;
+  }
+  .sheet-actions {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-lg);
+  }
+  .sheet-actions .action-chip {
+    padding: 6px 12px;
+    border-radius: var(--radius-round);
+    font-size: 13px;
+    background: var(--bg-tertiary);
+    color: var(--font-primary);
+    cursor: pointer;
+  }
+  .sheet-actions .action-chip.active {
+    background: var(--primary);
+    color: white;
+  }
+  .sheet-confirm {
+    width: 100%;
+    height: 40px;
+    border-radius: var(--radius-round);
+    background: var(--primary);
+    color: white;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+  }
+
+  /* Calendar Picker */
+  .calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+    margin: var(--spacing-md) 0;
+  }
+  .calendar-grid .cal-day {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 13px;
+    cursor: pointer;
+  }
+  .calendar-grid .cal-day.selected {
+    background: var(--primary);
+    color: white;
+  }
+  .calendar-grid .cal-day.today {
+    border: 1px solid var(--primary);
+  }
+
+  /* Page transitions */
+  .page-slide-in {
+    animation: slideIn 0.3s ease;
+  }
+  @keyframes slideIn {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+  }
+  .page-slide-out {
+    animation: slideOut 0.3s ease;
+  }
+  @keyframes slideOut {
+    from { transform: translateX(0); }
+    to { transform: translateX(-30%); }
+  }
+</style>
+</head>
+<body>
+
+<div class="app-container" id="app">
+  <!-- Navigation Stack -->
+  <div class="nav-stack" id="navStack">
+    <!-- Main Entry Page (Tabs) -->
+    <div class="page active" id="mainPage">
+      <!-- Home Tab -->
+      <div class="page active" id="homeTab" style="position:relative;">
+        <div class="title-bar">
+          <div class="title">首页</div>
+        </div>
+        <div class="scroll-area">
+          <div class="home-content">
+            <!-- Banner -->
+            <div class="banner-swiper" onclick="showToast('轮播Banner')">
+              <div class="banner-text">校园生活 精彩每一天</div>
+              <div class="banner-dots">
+                <div class="dot active"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+              </div>
+            </div>
+
+            <!-- Check-in Button -->
+            <div class="checkin-btn" onclick="goToCheckin()">
+              <div>
+                <div class="checkin-text">去签到</div>
+              </div>
+              <div class="checkin-arrow">&#10095;</div>
+              <div class="checkin-icon">&#128276;</div>
+            </div>
+
+            <!-- Course Overview -->
+            <div class="course-overview">
+              <div class="course-overview-header">
+                <div class="segment-btn">
+                  <div class="seg-item active" onclick="switchDay('today', this)">今日课程</div>
+                  <div class="seg-item" onclick="switchDay('tomorrow', this)">明日课程</div>
+                </div>
+                <div class="calendar-link" onclick="goToTimetable()">
+                  <div class="cal-icon">&#128197;</div>
+                  <div class="cal-text">全部</div>
+                </div>
+              </div>
+
+              <div id="courseList">
+                <div class="course-list-header">
+                  <span class="day-label">今日课程</span>
+                  <span class="count-label has-courses">3节</span>
+                </div>
+
+                <div class="course-card" onclick="goToCourseDetail('1')">
+                  <div class="color-bar" style="background:var(--course-1)"></div>
+                  <div class="card-content">
+                    <div class="card-name">概率论与数理统计</div>
+                    <div class="card-time">上午 · 08:00-09:35</div>
+                    <div class="card-info">A301 · 张三</div>
+                  </div>
+                </div>
+
+                <div class="course-card" onclick="goToCourseDetail('2')">
+                  <div class="color-bar" style="background:var(--course-2)"></div>
+                  <div class="card-content">
+                    <div class="card-name">数据结构</div>
+                    <div class="card-time">下午 · 13:00-14:35</div>
+                    <div class="card-info">B205 · 李四</div>
+                  </div>
+                </div>
+
+                <div class="course-card" onclick="goToCourseDetail('3')">
+                  <div class="color-bar" style="background:var(--course-3)"></div>
+                  <div class="card-content">
+                    <div class="card-name">英语听说</div>
+                    <div class="card-time">晚上 · 17:05-18:40</div>
+                    <div class="card-info">C102 · 王五</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mine Tab -->
+      <div class="page" id="mineTab" style="position:relative;">
+        <div class="title-bar" style="background:var(--bg-primary);">
+          <div class="title">我的</div>
+        </div>
+        <div class="scroll-area">
+          <div class="mine-header">
+            <div class="cap-icon">&#127891;</div>
+            <div class="mine-user-row" id="mineUserRow">
+              <div class="mine-user-info">
+                <div class="mine-avatar">&#128100;</div>
+                <div class="mine-name-col">
+                  <div class="mine-nickname" id="mineNickname">华为用户</div>
+                  <div class="mine-phone" id="minePhone" style="display:none;">
+                    <span class="phone-icon">&#128241;</span>
+                    <span id="minePhoneNum">138****1234</span>
+                  </div>
+                </div>
+              </div>
+              <button class="bind-btn link" id="bindBtn" onclick="handleBind()">
+                &#128279; 关联账号
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab Bar -->
+      <div class="tab-bar">
+        <div class="tab-item active" onclick="switchTab('home')">
+          <div class="tab-icon">&#127968;</div>
+          <div class="tab-label">首页</div>
+        </div>
+        <div class="tab-item" onclick="switchTab('mine')">
+          <div class="tab-icon">&#128100;</div>
+          <div class="tab-label">我的</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Timetable Page -->
+    <div class="page" id="timetablePage">
+      <div class="title-bar">
+        <div class="back-btn" onclick="goBack()">&#10094;</div>
+        <div class="title">课程中心</div>
+      </div>
+      <div class="timetable-header">
+        <div class="week-info">
+          <div class="week-num" id="weekNumLabel">第3周</div>
+          <div class="week-range" id="weekRangeLabel">3月10日 - 3月16日</div>
+        </div>
+        <div class="header-actions">
+          <div class="action-btn" onclick="openWeekPicker()">&#128197;</div>
+          <div class="action-btn" onclick="openMenu(event)">&#43;</div>
+        </div>
+      </div>
+      <div class="scroll-area">
+        <div class="timetable-grid">
+          <div class="grid-header">
+            <div class="month-col">
+              <div class="month-label">3</div>
+              <div class="month-suffix">月</div>
+            </div>
+            <div class="weekday-cols">
+              <div class="weekday-col"><div class="day-name">一</div><div class="day-date">3/10</div></div>
+              <div class="weekday-col"><div class="day-name">二</div><div class="day-date">3/11</div></div>
+              <div class="weekday-col today"><div class="day-name">三</div><div class="day-date">3/12</div></div>
+              <div class="weekday-col"><div class="day-name">四</div><div class="day-date">3/13</div></div>
+              <div class="weekday-col"><div class="day-name">五</div><div class="day-date">3/14</div></div>
+              <div class="weekday-col"><div class="day-name">六</div><div class="day-date">3/15</div></div>
+              <div class="weekday-col"><div class="day-name">日</div><div class="day-date">3/16</div></div>
+            </div>
+          </div>
+
+          <div class="daypart-label">上午</div>
+          <div class="period-row">
+            <div class="period-num">1</div>
+            <div class="period-cells">
+              <div class="period-cell"></div>
+              <div class="period-cell"><div class="course-block" style="height:72px;background:rgba(255,107,107,0.1);border-color:rgba(255,107,107,0.4);color:#FF6B6B;" onclick="goToCourseDetail('1')">概率论<br>@A301</div></div>
+              <div class="period-cell"></div>
+              <div class="period-cell"><div class="course-block" style="height:72px;background:rgba(78,205,196,0.1);border-color:rgba(78,205,196,0.4);color:#4ECDC4;" onclick="goToCourseDetail('2')">英语<br>@C102</div></div>
+              <div class="period-cell"></div>
+              <div class="period-cell"></div>
+              <div class="period-cell"></div>
+            </div>
+          </div>
+          <div class="period-row">
+            <div class="period-num">2</div>
+            <div class="period-cells">
+              <div class="period-cell"></div>
+              <div class="period-cell"></div>
+              <div class="period-cell"></div>
+              <div class="period-cell"></div>
+              <div class="period-cell"></div>
+              <div class="period-cell"></div>
+              <div class="period-cell"></div>
+            </div>
+          </div>
+          <div class="period-row">
+            <div class="period-num">3</div>
+            <div class="period-cells">
+              <div class="period-cell"><div class="course-block" style="height:72px;background:rgba(69,183,209,0.1);border-color:rgba(69,183,209,0.4);color:#45B7D1;" onclick="goToCourseDetail('3')">数据结构<br>@B205</div></div>
+              <div class="period-cell"></div>
+              <div class="period-cell"></div>
+              <div class="period-cell"></div>
+              <div class="period-cell"></div>
+              <div class="period-cell"></div>
+              <div class="period-cell"></div>
+            </div>
+          </div>
+          <div class="period-row">
+            <div class="period-num">4</div>
+            <div class="period-cells">
+              <div class="period-cell"></div>
+              <div class="period-cell"></div>
+              <div class="period-cell"></div>
+              <div class="period-cell"></div>
+              <div class="period-cell"></div>
+              <div class="period-cell"></div>
+              <div class="period-cell"></div>
+            </div>
+          </div>
+
+          <div class="daypart-label">下午</div>
+          <div class="period-row">
+            <div class="period-num">5</div>
+            <div class="period-cells">
+              <div class="period-cell"></div>
+              <div class="period-cell"></div>
+              <div class="period-cell"><div class="course-block" style="height:72px;background:rgba(255,107,107,0.1);border-color:rgba(255,107,107,0.4);color:#FF6B6B;" onclick="goToCourseDetail('1')">概率论<br>@A301</div></div>
+              <div class="period-cell"></div>
+              <div class="period-cell"></div>
+              <div class="period-cell"></div>
+              <div class="period-cell"></div>
+            </div>
+          </div>
+          <div class="period-row">
+            <div class="period-num">6</div>
+            <div class="period-cells">
+              <div class="period-cell"></div>
+              <div class="period-cell"></div>
+              <div class="period-cell"></div>
+              <div class="period-cell"></div>
+              <div class="period-cell"></div>
+              <div class="period-cell"></div>
+              <div class="period-cell"></div>
+            </div>
+          </div>
+          <div class="period-row">
+            <div class="period-num">7</div>
+            <div class="period-cells">
+              <div class="period-cell"></div>
+              <div class="period-cell"></div>
+              <div class="period-cell"></div>
+              <div class="period-cell"><div class="course-block" style="height:36px;background:rgba(150,206,180,0.1);border-color:rgba(150,206,180,0.4);color:#96CEB4;" onclick="goToCourseDetail('4')">体育</div></div>
+              <div class="period-cell"></div>
+              <div class="period-cell"></div>
+              <div class="period-cell"></div>
+            </div>
+          </div>
+          <div class="period-row">
+            <div class="period-num">8</div>
+            <div class="period-cells">
+              <div class="period-cell"></div>
+              <div class="period-cell"></div>
+              <div class="period-cell"></div>
+              <div class="period-cell"></div>
+              <div class="period-cell"></div>
+              <div class="period-cell"></div>
+              <div class="period-cell"></div>
+            </div>
+          </div>
+
+          <div class="daypart-label">晚上</div>
+          <div class="period-row">
+            <div class="period-num">9</div>
+            <div class="period-cells">
+              <div class="period-cell"></div>
+              <div class="period-cell"></div>
+              <div class="period-cell"><div class="course-block" style="height:72px;background:rgba(69,183,209,0.1);border-color:rgba(69,183,209,0.4);color:#45B7D1;" onclick="goToCourseDetail('3')">数据结构<br>@B205</div></div>
+              <div class="period-cell"></div>
+              <div class="period-cell"></div>
+              <div class="period-cell"></div>
+              <div class="period-cell"></div>
+            </div>
+          </div>
+          <div class="period-row">
+            <div class="period-num">10</div>
+            <div class="period-cells">
+              <div class="period-cell"></div>
+              <div class="period-cell"></div>
+              <div class="period-cell"></div>
+              <div class="period-cell"></div>
+              <div class="period-cell"></div>
+              <div class="period-cell"></div>
+              <div class="period-cell"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Course Form Page -->
+    <div class="page" id="courseFormPage">
+      <div class="title-bar transparent">
+        <div class="back-btn" onclick="goBack()">&#10094;</div>
+        <div class="title" id="formTitle">添加课程</div>
+      </div>
+      <div class="scroll-area">
+        <div style="padding: 8px 16px;">
+          <div class="form-banner">
+            <div class="banner-text">
+              <div class="semester-label">当前学期</div>
+              <div class="semester-value">2025-2026学年 第2学期</div>
+            </div>
+            <div class="banner-icon">&#128101;</div>
+          </div>
+
+          <div class="form-section">
+            <div class="form-row">
+              <div class="row-label">课程名称</div>
+              <div class="row-value"><input type="text" placeholder="请输入添加的课程名称" id="courseNameInput"></div>
+            </div>
+          </div>
+
+          <div style="margin:8px 0;"></div>
+
+          <div class="form-section" id="arrangementSection">
+            <div class="section-title">
+              <span>时段1</span>
+            </div>
+            <div class="form-row" onclick="showToast('打开课程周期选择器')">
+              <div class="row-label">课程周期</div>
+              <div class="row-value">第1-16周 <span class="row-arrow">&#10095;</span></div>
+            </div>
+            <div class="form-row" onclick="showToast('打开课程节数选择器')">
+              <div class="row-label">课程节数</div>
+              <div class="row-value">周一 第1-2节 <span class="row-arrow">&#10095;</span></div>
+            </div>
+            <div class="form-row">
+              <div class="row-label">教室地点</div>
+              <div class="row-value"><input type="text" placeholder="请输入教室地点"></div>
+            </div>
+            <div class="form-row">
+              <div class="row-label">任课教师</div>
+              <div class="row-value"><input type="text" placeholder="请输入任课教师"></div>
+            </div>
+          </div>
+
+          <div class="add-more-btn" onclick="showToast('添加更多时间段')">
+            <span>&#43;</span> 添加更多时间段
+          </div>
+        </div>
+      </div>
+      <div style="padding: 0 16px 16px;">
+        <button class="save-btn" onclick="showToast('保存成功')">保存</button>
+      </div>
+    </div>
+
+    <!-- Course Detail Page -->
+    <div class="page" id="courseDetailPage">
+      <div style="position:relative;">
+        <div class="detail-banner"></div>
+        <div class="title-bar transparent" style="position:relative;z-index:1;">
+          <div class="back-btn" onclick="goBack()">&#10094;</div>
+          <div class="title">课程详情</div>
+        </div>
+      </div>
+      <div class="scroll-area">
+        <div class="detail-content">
+          <div class="detail-name">概率论与数理统计</div>
+
+          <div class="detail-arrangement">
+            <div class="detail-row">
+              <div class="detail-icon">&#128197;</div>
+              <div class="detail-text">第1-16周</div>
+            </div>
+            <hr class="detail-divider">
+            <div class="detail-row">
+              <div class="detail-icon">&#128336;</div>
+              <div class="detail-text">第5-6节 13:00-14:35</div>
+            </div>
+            <hr class="detail-divider">
+            <div class="detail-row">
+              <div class="detail-icon">&#128205;</div>
+              <div class="detail-text">A教学楼301</div>
+            </div>
+            <hr class="detail-divider">
+            <div class="detail-row">
+              <div class="detail-icon">&#128100;</div>
+              <div class="detail-text">张三</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="detail-actions">
+        <div class="detail-action-btn" onclick="goToCourseForm('edit')">
+          <div class="action-icon">&#9998;</div>
+          <div class="action-label">编辑</div>
+        </div>
+        <div class="detail-action-btn" onclick="showDeleteDialog()">
+          <div class="action-icon">&#128465;</div>
+          <div class="action-label">删除</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Checkin Page -->
+    <div class="page" id="checkinPage">
+      <div style="position:relative;">
+        <div class="checkin-bg"></div>
+        <div class="title-bar transparent" style="position:relative;z-index:1;">
+          <div class="back-btn" onclick="goBack()">&#10094;</div>
+          <div class="title">课堂签到</div>
+        </div>
+      </div>
+      <div class="scroll-area">
+        <div class="checkin-content">
+          <div class="checkin-card-bg"></div>
+          <div class="checkin-input-area" id="checkinInputArea">
+            <div class="checkin-input-label">点击输入四位数签到码</div>
+            <div class="code-inputs" id="codeInputs">
+              <input type="text" class="code-input" maxlength="1" data-index="0" oninput="onCodeInput(this)" onfocus="onCodeFocus(this)">
+              <input type="text" class="code-input" maxlength="1" data-index="1" oninput="onCodeInput(this)" onfocus="onCodeFocus(this)">
+              <input type="text" class="code-input" maxlength="1" data-index="2" oninput="onCodeInput(this)" onfocus="onCodeFocus(this)">
+              <input type="text" class="code-input" maxlength="1" data-index="3" oninput="onCodeInput(this)" onfocus="onCodeFocus(this)">
+            </div>
+            <div class="error-tip" id="errorTip" style="display:none;">
+              &#9888; 请输入正确的签到码
+            </div>
+          </div>
+
+          <div class="checkin-tips">
+            <div class="tips-title">说明：</div>
+            <div class="tips-content">
+              1、正确输入任课老师公布的四位数签到码<br><br>
+              2、未签到成功的同学，请找老师补签<br><br>
+              3、当前为开发模式，签到码默认为: 1111
+            </div>
+          </div>
+
+          <button class="checkin-submit-btn" id="checkinBtn" disabled onclick="doCheckin()">确定</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Menu Popup -->
+<div class="menu-overlay" id="menuOverlay" onclick="closeMenu()">
+  <div class="menu-popup" id="menuPopup" style="top:80px;right:16px;">
+    <div class="menu-item" onclick="closeMenu();showToast('设置开学日期')">设置开学日期</div>
+    <div class="menu-item" onclick="closeMenu();goToCourseForm('create')">添加课程</div>
+  </div>
+</div>
+
+<!-- Week Picker Sheet -->
+<div class="sheet-overlay" id="weekSheetOverlay" onclick="closeWeekPicker()"></div>
+<div class="sheet-content" id="weekSheetContent">
+  <div class="sheet-title">查看周课表</div>
+  <div class="sheet-actions">
+    <div class="action-chip active">全选</div>
+    <div class="action-chip">单周</div>
+    <div class="action-chip">双周</div>
+    <div class="action-chip">自定义</div>
+  </div>
+  <div class="week-grid">
+    <div class="week-cell selected">1</div>
+    <div class="week-cell selected">2</div>
+    <div class="week-cell selected">3</div>
+    <div class="week-cell">4</div>
+    <div class="week-cell">5</div>
+    <div class="week-cell">6</div>
+    <div class="week-cell">7</div>
+    <div class="week-cell">8</div>
+    <div class="week-cell">9</div>
+    <div class="week-cell">10</div>
+    <div class="week-cell">11</div>
+    <div class="week-cell">12</div>
+    <div class="week-cell">13</div>
+    <div class="week-cell">14</div>
+    <div class="week-cell">15</div>
+    <div class="week-cell">16</div>
+    <div class="week-cell">17</div>
+    <div class="week-cell">18</div>
+    <div class="week-cell">19</div>
+    <div class="week-cell">20</div>
+    <div class="week-cell">21</div>
+    <div class="week-cell">22</div>
+    <div class="week-cell">23</div>
+    <div class="week-cell">24</div>
+    <div class="week-cell">25</div>
+  </div>
+  <button class="sheet-confirm" onclick="closeWeekPicker()">确认</button>
+</div>
+
+<!-- Delete Dialog -->
+<div class="modal-overlay" id="deleteDialog">
+  <div class="modal-dialog">
+    <div class="modal-msg">课程删除后将会从课程中心移除且无法恢复，是否删除？</div>
+    <div class="modal-btns">
+      <button class="modal-btn cancel" onclick="closeDialog('deleteDialog')">取消</button>
+      <button class="modal-btn danger" onclick="closeDialog('deleteDialog');showToast('删除成功');goBack();">删除</button>
+    </div>
+  </div>
+</div>
+
+<!-- Bind Dialog -->
+<div class="modal-overlay" id="bindDialog">
+  <div class="modal-dialog">
+    <div class="modal-msg">账号解除关联</div>
+    <div class="modal-msg" style="font-size:13px;color:var(--font-secondary);margin-top:-8px;">请确认是否解除账号关联？</div>
+    <div class="modal-btns">
+      <button class="modal-btn cancel" onclick="closeDialog('bindDialog')">取消</button>
+      <button class="modal-btn confirm" onclick="closeDialog('bindDialog');unbindAccount()">确认</button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+  // State
+  let currentPage = 'mainPage';
+  let currentTab = 'home';
+  let isBound = false;
+  let isCheckedIn = false;
+  let pageStack = ['mainPage'];
+
+  // Tab Switching
+  function switchTab(tab) {
+    currentTab = tab;
+    document.querySelectorAll('.tab-item').forEach((el, i) => {
+      el.classList.toggle('active', (tab === 'home' && i === 0) || (tab === 'mine' && i === 1));
+    });
+    document.getElementById('homeTab').classList.toggle('active', tab === 'home');
+    document.getElementById('mineTab').classList.toggle('active', tab === 'mine');
+    // Hide/show tab bar for sub-pages
+    const tabBars = document.querySelectorAll('.tab-bar');
+    tabBars.forEach(bar => bar.style.display = currentPage === 'mainPage' ? 'flex' : 'none');
+  }
+
+  // Day Switching
+  function switchDay(day, el) {
+    document.querySelectorAll('.seg-item').forEach(s => s.classList.remove('active'));
+    el.classList.add('active');
+    const list = document.getElementById('courseList');
+    if (day === 'tomorrow') {
+      list.innerHTML = `
+        <div class="course-list-header">
+          <span class="day-label">明日课程</span>
+          <span class="count-label has-courses">2节</span>
+        </div>
+        <div class="course-card" onclick="goToCourseDetail('5')">
+          <div class="color-bar" style="background:var(--course-5)"></div>
+          <div class="card-content">
+            <div class="card-name">操作系统</div>
+            <div class="card-time">上午 · 08:00-09:35</div>
+            <div class="card-info">D401 · 赵六</div>
+          </div>
+        </div>
+        <div class="course-card" onclick="goToCourseDetail('2')">
+          <div class="color-bar" style="background:var(--course-2)"></div>
+          <div class="card-content">
+            <div class="card-name">数据结构</div>
+            <div class="card-time">下午 · 13:00-14:35</div>
+            <div class="card-info">B205 · 李四</div>
+          </div>
+        </div>
+      `;
+    } else {
+      list.innerHTML = `
+        <div class="course-list-header">
+          <span class="day-label">今日课程</span>
+          <span class="count-label has-courses">3节</span>
+        </div>
+        <div class="course-card" onclick="goToCourseDetail('1')">
+          <div class="color-bar" style="background:var(--course-1)"></div>
+          <div class="card-content">
+            <div class="card-name">概率论与数理统计</div>
+            <div class="card-time">上午 · 08:00-09:35</div>
+            <div class="card-info">A301 · 张三</div>
+          </div>
+        </div>
+        <div class="course-card" onclick="goToCourseDetail('2')">
+          <div class="color-bar" style="background:var(--course-2)"></div>
+          <div class="card-content">
+            <div class="card-name">数据结构</div>
+            <div class="card-time">下午 · 13:00-14:35</div>
+            <div class="card-info">B205 · 李四</div>
+          </div>
+        </div>
+        <div class="course-card" onclick="goToCourseDetail('3')">
+          <div class="color-bar" style="background:var(--course-3)"></div>
+          <div class="card-content">
+            <div class="card-name">英语听说</div>
+            <div class="card-time">晚上 · 17:05-18:40</div>
+            <div class="card-info">C102 · 王五</div>
+          </div>
+        </div>
+      `;
+    }
+  }
+
+  // Navigation
+  function navigateTo(pageId) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    const target = document.getElementById(pageId);
+    target.classList.add('active');
+    target.classList.add('page-slide-in');
+    setTimeout(() => target.classList.remove('page-slide-in'), 300);
+    currentPage = pageId;
+    pageStack.push(pageId);
+    // Hide tab bar on sub-pages
+    const tabBars = document.querySelectorAll('.tab-bar');
+    tabBars.forEach(bar => bar.style.display = pageId === 'mainPage' ? 'flex' : 'none');
+  }
+
+  function goBack() {
+    if (pageStack.length > 1) {
+      pageStack.pop();
+      const prevPage = pageStack[pageStack.length - 1];
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.getElementById(prevPage).classList.add('active');
+      currentPage = prevPage;
+      const tabBars = document.querySelectorAll('.tab-bar');
+      tabBars.forEach(bar => bar.style.display = prevPage === 'mainPage' ? 'flex' : 'none');
+    }
+  }
+
+  function goToTimetable() { navigateTo('timetablePage'); }
+  function goToCourseDetail(id) { navigateTo('courseDetailPage'); }
+  function goToCourseForm(mode) {
+    document.getElementById('formTitle').textContent = mode === 'edit' ? '编辑课程' : '添加课程';
+    navigateTo('courseFormPage');
+  }
+  function goToCheckin() {
+    if (!isBound) {
+      showToast('请关联账号后使用签到');
+      return;
+    }
+    navigateTo('checkinPage');
+  }
+
+  // Menu
+  function openMenu(event) {
+    event.stopPropagation();
+    const overlay = document.getElementById('menuOverlay');
+    overlay.classList.add('active');
+  }
+  function closeMenu() {
+    document.getElementById('menuOverlay').classList.remove('active');
+  }
+
+  // Week Picker
+  function openWeekPicker() {
+    document.getElementById('weekSheetOverlay').classList.add('active');
+    document.getElementById('weekSheetContent').classList.add('active');
+  }
+  function closeWeekPicker() {
+    document.getElementById('weekSheetOverlay').classList.remove('active');
+    document.getElementById('weekSheetContent').classList.remove('active');
+  }
+
+  // Dialog
+  function showDeleteDialog() {
+    document.getElementById('deleteDialog').classList.add('active');
+  }
+  function closeDialog(id) {
+    document.getElementById(id).classList.remove('active');
+  }
+
+  // Toast
+  function showToast(msg) {
+    const toast = document.getElementById('toast');
+    toast.textContent = msg;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2000);
+  }
+
+  // Checkin
+  function onCodeInput(el) {
+    const value = el.value;
+    const index = parseInt(el.dataset.index);
+    if (value) {
+      el.classList.add('filled');
+      const next = document.querySelector(`.code-input[data-index="${index + 1}"]`);
+      if (next) next.focus();
+    } else {
+      el.classList.remove('filled');
+    }
+    updateCheckinBtn();
+    // Hide error on input
+    document.getElementById('errorTip').style.display = 'none';
+    document.querySelectorAll('.code-input').forEach(i => i.classList.remove('error'));
+  }
+
+  function onCodeFocus(el) {
+    el.select();
+  }
+
+  function updateCheckinBtn() {
+    const inputs = document.querySelectorAll('.code-input');
+    let code = '';
+    inputs.forEach(i => code += i.value);
+    document.getElementById('checkinBtn').disabled = code.length < 4;
+  }
+
+  function doCheckin() {
+    const inputs = document.querySelectorAll('.code-input');
+    let code = '';
+    inputs.forEach(i => code += i.value);
+    if (code === '1111') {
+      // Success
+      isCheckedIn = true;
+      const area = document.getElementById('checkinInputArea');
+      area.innerHTML = `
+        <div class="checkin-success">
+          <div class="course-name">概率论与数理统计</div>
+          <div class="success-icon">&#10004;</div>
+          <div class="success-text">签到成功</div>
+        </div>
+      `;
+    } else {
+      // Error
+      document.getElementById('errorTip').style.display = 'flex';
+      inputs.forEach(i => { i.classList.add('error'); i.value = ''; });
+      inputs[0].focus();
+      updateCheckinBtn();
+    }
+  }
+
+  // Account binding
+  function handleBind() {
+    if (isBound) {
+      document.getElementById('bindDialog').classList.add('active');
+    } else {
+      // Simulate binding
+      isBound = true;
+      document.getElementById('mineNickname').textContent = '张同学';
+      document.getElementById('minePhone').style.display = 'flex';
+      document.getElementById('minePhoneNum').textContent = '138****1234';
+      const btn = document.getElementById('bindBtn');
+      btn.className = 'bind-btn unlink';
+      btn.innerHTML = '&#128279; 取消关联';
+      showToast('关联成功');
+    }
+  }
+
+  function unbindAccount() {
+    isBound = false;
+    document.getElementById('mineNickname').textContent = '华为用户';
+    document.getElementById('minePhone').style.display = 'none';
+    const btn = document.getElementById('bindBtn');
+    btn.className = 'bind-btn link';
+    btn.innerHTML = '&#128279; 关联账号';
+    showToast('已解除关联');
+  }
+
+  // Week cell toggle
+  document.querySelectorAll('.week-cell').forEach(cell => {
+    cell.addEventListener('click', () => cell.classList.toggle('selected'));
+  });
+
+  // Initialize
+  switchTab('home');
+</script>
+</body>
+</html>

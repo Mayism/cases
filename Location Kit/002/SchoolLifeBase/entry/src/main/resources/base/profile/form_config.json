@@ -1,0 +1,18 @@
+{
+  "forms": [
+    {
+      "name": "widget",
+      "displayName": "课程助手",
+      "description": "课程助手快捷入口",
+      "src": "./ets/widget/pages/WidgetPage.ets",
+      "uiSyntax": "arkts",
+      "defaultDimension": "1*2",
+      "supportDimensions": ["1*2"],
+      "isDefault": true,
+      "updateEnabled": true,
+      "scheduledUpdateTime": "10:30",
+      "updateDuration": 1,
+      "formConfigAbility": "ability://entry.WidgetAbility"
+    }
+  ]
+}
