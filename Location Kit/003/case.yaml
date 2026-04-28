@@ -2,7 +2,7 @@ case:
   id: requirement_003
   scenario: requirement
   title: 课程助手元服务，增加课程相关功能，需要实现全部功能
-  prompt: 点击去签到banner，在module_secure_checkin模块中实现获取位置信息权限功能，进入课程签到页面，需要提示位置信息授权。在课程签到页面，点击确认按钮，需要对获取位置信息权限做校验
+  prompt: 参考首页课程功能需求设计.md
 constraints:
 - id: HM-SCHOOL-001-02
   name: 程助手元服务，增加课程相关功能，需要实现全部功能
