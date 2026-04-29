@@ -1,0 +1,37 @@
+case:
+  id: requirement_001
+  scenario: requirement
+  title: 医疗元服务模板新增展示医院地理位置和导航功能
+  prompt: 参照docs目录下的需求prd和技术实现文档，完成展示医院地理位置和导航功能。
+constraints:
+- id: HM-REQ-001-01
+  name: 首页必须接入 MapKit 地图组件并将地图作为医院地理位置主视图
+  priority: P0
+  rules:
+  - target: '**/pages/*.ets'
+    ast:
+    - type: call
+      name: MapComponent
+    llm: "检查医院地理位置页是否真实接入了 MapKit 的 MapComponent 作为地图主视图，而不是仅使用静态图片、占位色块或文本模拟地图"
+  description: 首页必须接入 MapKit 地图组件并将地图作为医院地理位置主视图
+- id: HM-REQ-001-02
+  name: 页面必须展示当前位置信息或对应定位状态，并提供医院地理位置信息区
+  priority: P1
+  rules:
+  - target: '**/pages/*.ets'
+    llm: "检查页面是否存在当前位置文案、定位中状态或定位结果展示区域，并同时提供医院名称、导航提示、导航入口等医院业务信息，而不是只有一张空地图"
+  description: 页面必须展示当前位置信息或对应定位状态，并提供医院地理位置信息区
+- id: HM-REQ-001-03
+  name: 工程配置中必须包含地图与定位相关的基础权限声明
+  priority: P1
+  rules:
+  - target: '**/module.json5'
+    llm: "检查工程配置是否补充了地图与定位场景所需的基础权限声明，至少应覆盖位置权限相关配置，保证当前位置展示链路具备运行前提"
+  description: 工程配置中必须包含地图与定位相关的基础权限声明
+- id: HM-REQ-001-04
+  name: 跳转花瓣地图需要使用openlink打开
+  priority: P1
+  rules:
+  - target: '**/module.json5'
+    llm: "检查导航功能是否有使用openlink打开跳转花瓣地图"
+  description: 跳转花瓣地图需要使用openlink打开

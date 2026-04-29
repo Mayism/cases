@@ -1,0 +1,12 @@
+{
+  "routerMap": [
+    {
+      "name": "CommonWebPage",
+      "pageSourceFile": "src/main/ets/components/CommonWebPage.ets",
+      "buildFunction": "CommonWebPageBuilder",
+      "data": {
+        "description": "CommonWebPage"
+      }
+    }
+  ]
+}
