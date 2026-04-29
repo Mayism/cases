@@ -30,8 +30,8 @@ constraints:
   description: 工程配置中必须包含地图与定位相关的基础权限声明
 - id: HM-REQ-001-04
   name: 跳转花瓣地图需要使用openlink打开
-  priority: P1
+  priority: P0
   rules:
-  - target: '**/module.json5'
+  - target: '**/pages/*.ets'
     llm: "检查导航功能是否有使用openlink打开跳转花瓣地图"
   description: 跳转花瓣地图需要使用openlink打开
