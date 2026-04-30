@@ -1,0 +1,14 @@
+{
+  "name": "business_mine",
+  "version": "1.0.0",
+  "description": "Please describe the basic information.",
+  "main": "Index.ets",
+  "author": "",
+  "license": "Apache-2.0",
+  "packageType": "InterfaceHar",
+  "dependencies": {
+    "lib_common": "file:../../commons/lib_common",
+    "module_coupon": "file:../../components/module_coupon",
+    "module_points": "file:../../components/module_points",
+  }
+}

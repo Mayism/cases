@@ -1,0 +1,20 @@
+{
+  "string": [
+    {
+      "name": "agcit_huawei_shopping_mall",
+      "value": "1.0.2"
+    },
+    {
+      "name": "agcittype_huawei_shopping_mall",
+      "value": "industryTemplate"
+    },
+    {
+      "name": "app_name",
+      "value": "商场模板"
+    },
+    {
+      "name": "agcitkid_huawei_shopping_mall",
+      "value": "agcit_huawei_shopping_mall_module_coupon/1.0.2,agcit_huawei_shopping_mall_module_keyboard/1.0.2,agcit_huawei_shopping_mall_module_points/1.0.2"
+    }
+  ]
+}

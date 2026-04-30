@@ -1,0 +1,108 @@
+case:
+  id: requirement_001
+  scenario: requirement
+  title: 购物中心元服务新增我的钱包功能
+  prompt: 按照docs目录下的需求prd文档，完成我的钱包功能
+constraints:
+- id: EXP-MUST-01
+  name: 我的页面必须提供钱包入口卡片
+  priority: P0
+  rules:
+  - target: '**/pages/MinePage.ets'
+    llm: "检查 MinePage 的 mineCard Builder 中是否包含一个可点击的钱包卡片，显示钱包图标（ic_mine_wallet）、'我的钱包'文字和当前余额（格式￥xxx.xx），点击后通过 RouterUtil.pushPathByName 跳转至 RouterMap.MY_WALLET_PAGE 路由页面"
+
+- id: EXP-MUST-02
+  name: 钱包详情页必须展示余额、充值按钮和变动明细
+  priority: P0
+  rules:
+  - target: '**/pages/MyWalletPage.ets'
+    llm: "检查钱包详情页是否包含：1）钱包余额展示区域，使用 intl.NumberFormat('zh-CN', { minimumFractionDigits: 2 }) 格式化金额；2）'充值'按钮，点击后通过 RouterUtil.pushPathByName 跳转至 RouterMap.RECHARGE_WALLET_PAGE；3）变动明细 List，使用 ForEach 遍历 walletFilterList，每条记录显示名称、时间和金额，充值记录带'+'前缀显示主题色，支出记录带'-'前缀"
+
+- id: EXP-MUST-03
+  name: 必须使用 AppStorageV2 连接的 GlobalUtils 管理全局钱包余额
+  priority: P0
+  rules:
+  - target: '**/utils/GlobalUtils.ets'
+    llm: "检查 GlobalUtils 类是否使用 @ObservedV2 装饰器，并包含 @Trace myWallet: number 属性用于存储钱包余额"
+  - target: '**/viewmodel/MyWalletViewModel.ets'
+    llm: "检查 MyWalletViewModel 是否通过 AppStorageV2.connect(GlobalUtils, () => new GlobalUtils()) 获取 globalInfo 实例，充值时通过 globalInfo.myWallet += 100 增加余额，消费时通过 globalInfo.myWallet -= money 扣减余额"
+
+- id: EXP-MUST-04
+  name: route_map_mine.json 必须包含 MyWalletPage 和 RechargeWalletPage 路由
+  priority: P0
+  rules:
+  - target: '**/route_map_mine.json'
+    llm: "检查路由配置中是否包含 name 为 'MyWalletPage' 和 'RechargeWalletPage' 的两个路由条目，分别指向对应的页面文件和 Builder 函数"
+  - target: '**/constants/RouterMap.ets'
+    llm: "检查 RouterMap 枚举中是否包含 MY_WALLET_PAGE = 'MyWalletPage' 和 RECHARGE_WALLET_PAGE = 'RechargeWalletPage' 两个枚举值"
+
+- id: EXP-MUST-05
+  name: 必须定义 IWallet 接口和 Wallet 类作为钱包数据模型
+  priority: P0
+  rules:
+  - target: '**/models/ResponseModel.ets'
+    llm: "检查是否定义了 IWallet 接口（包含 id?: string, name: string, time: number, action: number, money: string 字段）和 @ObservedV2 装饰的 Wallet 类（构造函数接收 IWallet 参数，id 默认使用时间戳）"
+
+- id: EXP-MUST-06
+  name: 充值页面必须提供序列号和密钥输入校验
+  priority: P0
+  rules:
+  - target: '**/pages/RechargeWalletPage.ets'
+    llm: "检查充值页面是否包含序列号 TextInput（InputType.Number）和密钥 TextInput，以及 validateInput 方法校验两者非空，为空时通过 ContextUtils.showToast 展示提示（'序列号不能为空' 或 '密钥不能为空'），校验通过后调用 RouterUtil.pop(1) 返回上一页"
+
+- id: EXP-MUST-07
+  name: 缴费详情页必须提供电子钱包支付卡片
+  priority: P0
+  rules:
+  - target: '**/pages/PayDetailPage.ets'
+    llm: "检查 PayDetailPage 中是否有一个 walletCard Builder，包含：1）'电子钱包支付'标题；2）'电子钱包'名称 + 当前余额显示；3）Toggle 开关绑定 vm.useWallet，enabled 绑定 vm.enableWallet（余额>0才可用）；4）显示钱包抵扣金额 vm.useWalletMoney"
+
+- id: EXP-MUST-08
+  name: 缴费时必须通过 EmitUtils 事件通知扣减钱包余额
+  priority: P0
+  rules:
+  - target: '**/viewmodel/PayDetailViewModel.ets'
+    llm: "检查 payOrder 方法中是否在支付成功后调用 handleWalletPay，该方法通过 EmitUtils.sendEmit('onConsumeWallet', { data: { money: this.useWalletMoney } }) 发送消费事件"
+  - target: '**/viewmodel/IndexViewModel.ets'
+    llm: "检查 IndexViewModel.init 中是否调用 onConsumeWallet 注册事件监听，该方法通过 EmitUtils.onEmit('onConsumeWallet', callback) 监听消费事件并调用 MyWalletViewModel.consumeWallet 扣减余额；aboutToDisappear 中是否调用 offConsumeWallet 取消监听"
+
+- id: EXP-MUST-09
+  name: 钱包明细 API 请求必须正确配置
+  priority: P0
+  rules:
+  - target: '**/httprequest/HttpRequestApi.ets'
+    llm: "检查是否导出 getMyWalletList 函数，使用 AxiosRequest.get 发送 GET 请求至 RequestUrl.GET_MY_WALLET_LIST_URL，请求参数包含 storeId 和 userId"
+  - target: '**/httprequest/HttpRequest.ets'
+    llm: "检查是否导出 getMyWalletList 函数，内部调用 HttpRequestApi.getMyWalletList，成功时返回 Array<Wallet>，失败时 reject"
+  - target: '**/constants/Common.ets'
+    llm: "检查 RequestUrl 类中是否定义 GET_MY_WALLET_LIST_URL = 'getMyWalletList' 常量"
+
+- id: EXP-SHOULD-01
+  name: MyWalletViewModel 应采用单例模式
+  priority: P1
+  rules:
+  - target: '**/viewmodel/MyWalletViewModel.ets'
+    llm: "检查 MyWalletViewModel 是否实现单例模式：包含 private static _instance 属性和 static get instance getter，getter 中判断 _instance 不存在时创建新实例"
+
+- id: EXP-SHOULD-02
+  name: 钱包详情页应支持月份和类型双维度筛选
+  priority: P1
+  rules:
+  - target: '**/pages/MyWalletPage.ets'
+    llm: "检查是否包含：1）年月双列 TextPicker（bindSheet 半模态展示），选择确认后调用 vm.filterWalletListByMonth()；2）Tab 标签使用 WalletConstants.TAB_OPTIONS 渲染'全部/充值/支出'三个选项，点击切换 vm.actionType"
+  - target: '**/constants/WalletConstants.ets'
+    llm: "检查是否定义 WalletConstants.TAB_OPTIONS 常量，包含 title 和 value 字段的筛选选项数组（全部:0, 充值:1, 支出:2）"
+
+- id: EXP-SHOULD-03
+  name: 缴费详情页钱包抵扣金额应自动计算
+  priority: P1
+  rules:
+  - target: '**/viewmodel/PayDetailViewModel.ets'
+    llm: "检查 getActualPayMoney 方法中：当 useWallet 为 true 时，useWalletMoney 应取 min(globalInfo.myWallet, leftMoney)；当 useWallet 为 false 时，useWalletMoney 应为 0。enableWallet getter 应返回 globalInfo.myWallet > 0"
+
+- id: EXP-SHOULD-04
+  name: business_mine 模块 Index.ets 应导出 MyWalletViewModel
+  priority: P1
+  rules:
+  - target: 'features/business_mine/Index.ets'
+    llm: "检查模块入口文件是否导出 MyWalletViewModel（export { MyWalletViewModel } from './src/main/ets/viewmodel/MyWalletViewModel'），以便 products/phone 模块引用"
