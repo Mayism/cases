@@ -1,0 +1,13 @@
+{
+  "module": {
+    "name": "business_home",
+    "type": "shared",
+    "description": "$string:shared_desc",
+    "deviceTypes": [
+      "phone",
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": true,
+    "routerMap": "$profile:route_map_home"
+  }
+}

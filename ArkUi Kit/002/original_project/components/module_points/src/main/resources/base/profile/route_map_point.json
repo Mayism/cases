@@ -1,0 +1,24 @@
+{
+  "routerMap": [
+    {
+      "name": "SelfServicePointPage",
+      "pageSourceFile": "src/main/ets/pages/SelfServicePointPage.ets",
+      "buildFunction": "SelfServicePointPageBuilder"
+    },
+    {
+      "name": "SelfPointRecordPage",
+      "pageSourceFile": "src/main/ets/pages/SelfPointRecordPage.ets",
+      "buildFunction": "SelfPointRecordPageBuilder"
+    },
+    {
+      "name": "SelfPointRule",
+      "pageSourceFile": "src/main/ets/pages/SelfPointRule.ets",
+      "buildFunction": "SelfPointRuleBuilder"
+    },
+    {
+      "name": "SelfPointGuide",
+      "pageSourceFile": "src/main/ets/pages/SelfPointGuide.ets",
+      "buildFunction": "SelfPointGuideBuilder"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "string": [
+    {
+      "name": "shared_desc",
+      "value": "description"
+    },
+    {
+      "name": "search_words",
+      "value": "输入关键词"
+    },
+    {
+      "name": "parking_payment",
+      "value": "停车缴费"
+    },
+    {
+      "name": "self_service_points",
+      "value": "自助积分"
+    },
+    {
+      "name": "thoughtful_service",
+      "value": "贴心服务"
+    },
+
+    {
+      "name": "my_car",
+      "value": "我的车辆"
+    },
+    {
+      "name": "pay_failed_msg",
+      "value": "支付失败！错误码：%s"
+    },
+    {
+      "name": "agcit_huawei_shopping_mall",
+      "value": "1.0.0"
+    }
+  ]
+}

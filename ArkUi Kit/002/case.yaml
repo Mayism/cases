@@ -1,0 +1,107 @@
+case:
+  id: requirement_001
+  scenario: requirement
+  title: 购物中心元服务新增店铺导购功能
+  prompt: 按照docs目录下的需求prd文档，完成店铺导购功能
+constraints:
+- id: EXP-MUST-01
+  name: 必须实现店铺导购列表页并支持从首页金刚区导航进入
+  priority: P0
+  rules:
+  - target: '**/pages/HomePage.ets'
+    llm: "检查首页金刚区 diamondZoneList 是否包含'店铺导购'条目，且该条目的 url 字段使用 RouterMap.STORE_GUIDE_PAGE 常量，点击后能正确导航到 StoreGuidePage"
+  - target: '**/route_map*.json'
+    llm: "检查路由配置文件中是否注册了名为 StoreGuidePage 的路由条目，pageSourceFile 指向 src/main/ets/pages/StoreGuidePage.ets，buildFunction 为 StoreGuidePageBuilder"
+  - target: '**/RouterMap.ets'
+    llm: "检查 RouterMap 枚举中是否包含 STORE_GUIDE_PAGE = 'StoreGuidePage' 常量定义"
+
+- id: EXP-MUST-02
+  name: 店铺导购列表页必须支持分类标签和楼层侧边栏组合筛选
+  priority: P0
+  rules:
+  - target: '**/pages/StoreGuidePage.ets'
+    llm: "检查 StoreGuidePage 是否使用 GuideListComp 组件或内联实现了包含分类标签横向列表（全部、餐饮、服装、儿童、精品、娱乐、母婴、运动）和楼层侧边栏（B1~5F）的布局，且两者可同时生效进行组合筛选"
+  - target: '**/components/GuideListComp.ets'
+    llm: "检查 GuideListComp 是否实现了 filterGuides 计算属性，该属性同时根据 searchText（关键词）、searchTag（分类）和 searchFloor（楼层）三个维度过滤 storeGuideList"
+
+- id: EXP-MUST-03
+  name: 必须实现店铺详情页并通过路由传递店铺数据
+  priority: P0
+  rules:
+  - target: '**/pages/StoreGuideDetailPage.ets'
+    llm: "检查是否存在 StoreGuideDetailPage 页面组件，使用 NavDestination 包裹，展示店铺大图（bigImage）、Logo、名称、标签、位置、电话和简介字段，数据来源于路由参数中的 StoreGuide 对象"
+  - target: '**/route_map*.json'
+    llm: "检查路由配置文件中是否注册了名为 StoreGuideDetailPage 的路由条目，pageSourceFile 指向 src/main/ets/pages/StoreGuideDetailPage.ets，buildFunction 为 StoreGuideDetailPageBuilder"
+  - target: '**/RouterMap.ets'
+    llm: "检查 RouterMap 枚举中是否包含 STORE_GUIDE_DETAIL_PAGE = 'StoreGuideDetailPage' 常量定义"
+  - target: '**/RouterModel.ets'
+    llm: "检查是否定义了 GuideRouter 接口，包含 guide: StoreGuide 字段，用于导航传参"
+
+- id: EXP-MUST-04
+  name: 必须定义 StoreGuide 和 GuideTag 数据模型
+  priority: P0
+  rules:
+  - target: '**/models/ResponseModel.ets'
+    llm: "检查是否定义了 @ObservedV2 装饰的 StoreGuide 类，包含 id、logo、name、bigImage、location、floor、tag、tel、introduce 九个字段，且各展示字段使用 @Trace 装饰器。同时检查是否定义了 GuideTag 类，包含 id、name、num 字段"
+
+- id: EXP-MUST-05
+  name: 必须实现 getStoreGuide API 调用链
+  priority: P0
+  rules:
+  - target: '**/httprequest/HttpRequest.ets'
+    llm: "检查是否导出了 getStoreGuide 函数，返回 Promise<Array<StoreGuide>>，内部调用 HttpRequestApi.getStoreGuide() 并将响应数据转换为 StoreGuide 对象数组"
+  - target: '**/httprequest/HttpRequestApi.ets'
+    llm: "检查是否导出了 getStoreGuide 函数，使用 AxiosRequest.get 发送 GET 请求，url 为 RequestUrl.GET_STORE_GUIDE_URL，参数包含 storeId（从 MallModel.shoppingMall.id 获取）"
+  - target: '**/constants/Common.ets'
+    llm: "检查 RequestUrl 类中是否定义了 GET_STORE_GUIDE_URL 常量，值为 'getStoreGuide'"
+
+- id: EXP-MUST-06
+  name: 店铺详情页必须提供电话拨打入口
+  priority: P0
+  rules:
+  - target: '**/pages/StoreGuideDetailPage.ets'
+    llm: "检查店铺详情页是否在电话区域实现了点击交互，点击后通过 bindSheet 弹出底部面板，使用 CallTelSheetBuilder 构建拨号界面，传入商场电话号码（mallModel.shoppingMall.tel）"
+
+- id: EXP-SHOULD-01
+  name: 店铺导购列表页应支持关键词搜索
+  priority: P1
+  rules:
+  - target: '**/components/GuideListComp.ets'
+    llm: "检查 GuideListComp 是否包含 Search 组件，绑定到 vm.searchText，且 filterGuides 计算属性中包含根据 searchText 对 item.name 进行 indexOf 匹配的过滤逻辑"
+
+- id: EXP-SHOULD-02
+  name: 筛选无结果时应展示空状态提示
+  priority: P1
+  rules:
+  - target: '**/components/GuideListComp.ets'
+    llm: "检查当 filterGuides 数组为空时，是否展示 EmptyComp 组件或等效的空状态提示，提示文本为'暂无相关店铺信息'"
+
+- id: EXP-SHOULD-03
+  name: 应使用 @ObservedV2/@Trace 装饰器管理 ViewModel 状态
+  priority: P1
+  rules:
+  - target: '**/viewmodel/StoreGuideViewModel.ets'
+    llm: "检查 StoreGuideViewModel 是否使用 @ObservedV2 类装饰器，且 storeGuideList、searchText、searchTag、searchFloor 等需要响应式更新的属性是否使用 @Trace 装饰器"
+
+- id: EXP-SHOULD-04
+  name: 首页精选推荐区域应支持跳转到店铺详情页
+  priority: P1
+  rules:
+  - target: '**/pages/HomePage.ets'
+    llm: "检查首页是否在 aboutToAppear 中调用 getStoreGuide 获取店铺列表，精选推荐区域的广告图片点击时是否通过 storeGuideList.find 匹配店铺 ID，匹配成功后使用 RouterUtil.pushPathByName 导航到 STORE_GUIDE_DETAIL_PAGE 并传递 GuideRouter 参数"
+
+- id: EXP-SHOULD-05
+  name: 店铺导购列表页应实现楼层图片轮播
+  priority: P1
+  rules:
+  - target: '**/pages/StoreGuidePage.ets'
+    llm: "检查 StoreGuidePage 是否使用 Swiper 组件展示楼层图片（B1~5F），每个楼层项包含位置文本标注（如 L5-502）和位置图标，点击楼层图片时调用 vm.goStore 查找对应店铺并导航到详情页"
+
+- id: EXP-SHOULD-06
+  name: 应提供完整的 Mock 数据用于开发调试
+  priority: P1
+  rules:
+  - target: '**/mock/MockData.ets'
+    llm: "检查 MockData 类中是否包含 getStoreGuide 静态 getter，返回 BaseResponse<Array<StoreGuide>> 类型，包含覆盖 B1~5F 各楼层的店铺记录（至少 20 条），每条记录包含完整的 id、logo、name、bigImage、location、floor、tag、tel、introduce 字段"
+  - target: '**/httprequest/AxiosHttp.ets'
+    llm: "检查 getMockResponse 函数的 switch 语句中是否包含 RequestUrl.GET_STORE_GUIDE_URL 分支，返回 MockData.getStoreGuide as T"

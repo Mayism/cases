@@ -1,0 +1,14 @@
+{
+  "name": "entry",
+  "version": "1.0.0",
+  "description": "Please describe the basic information.",
+  "main": "",
+  "author": "",
+  "license": "",
+  "dependencies": {
+    "lib_common": "file:../../commons/lib_common",
+    "module_points": "file:../../components/module_points",
+    "business_mine": "file:../../features/business_mine",
+  }
+}
+
