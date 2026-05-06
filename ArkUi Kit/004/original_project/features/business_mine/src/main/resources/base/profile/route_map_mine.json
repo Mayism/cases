@@ -1,0 +1,34 @@
+{
+  "routerMap": [
+    {
+      "name": "MyCouponsPage",
+      "pageSourceFile": "src/main/ets/pages/MyCouponsPage.ets",
+      "buildFunction": "MyCouponsPageBuilder"
+    },
+    {
+      "name": "UserInfoPage",
+      "pageSourceFile": "src/main/ets/pages/UserInfoPage.ets",
+      "buildFunction": "UserInfoPageBuilder"
+    },
+    {
+      "name": "SettingPage",
+      "pageSourceFile": "src/main/ets/pages/SettingPage.ets",
+      "buildFunction": "SettingPageBuilder"
+    },
+    {
+      "name": "PrivacyPage",
+      "pageSourceFile": "src/main/ets/pages/PrivacyPage.ets",
+      "buildFunction": "PrivacyPageBuilder"
+    },
+    {
+      "name": "MyWalletPage",
+      "pageSourceFile": "src/main/ets/pages/MyWalletPage.ets",
+      "buildFunction": "MyWalletPageBuilder"
+    },
+    {
+      "name": "RechargeWalletPage",
+      "pageSourceFile": "src/main/ets/pages/RechargeWalletPage.ets",
+      "buildFunction": "RechargeWalletPageBuilder"
+    }
+  ]
+}

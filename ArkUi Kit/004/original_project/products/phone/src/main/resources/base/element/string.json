@@ -1,0 +1,64 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "商场模板"
+    },
+    {
+      "name": "INTERNET_REASON",
+      "value": "获取访问互联网权限"
+    },
+    {
+      "name": "location_permission",
+      "value": "查看商家位置功能需要允许应用运行时获取位置信息"
+    },
+    {
+      "name": "EntryFormAbility_desc",
+      "value": "form_description"
+    },
+    {
+      "name": "EntryFormAbility_label",
+      "value": "商场模板"
+    },
+    {
+      "name": "widget_desc",
+      "value": "商场模板"
+    },
+    {
+      "name": "widget_display_name",
+      "value": "商场模板"
+    },
+    {
+      "name": "login",
+      "value": "关联账号"
+    },
+    {
+      "name": "pay_failed",
+      "value": "支付失败"
+    },
+    {
+      "name": "salon_selected",
+      "value": "商场精选"
+    },
+    {
+      "name": "salon_selected_en",
+      "value": "Featured Store"
+    },
+    {
+      "name": "footer_line",
+      "value": "我是有底线的"
+    },
+    {
+      "name": "agcit_huawei_shopping_mall",
+      "value": "1.0.0"
+    }
+  ]
+}

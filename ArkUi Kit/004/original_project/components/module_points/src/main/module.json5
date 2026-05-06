@@ -1,0 +1,10 @@
+{
+  "module": {
+    "name": "module_points",
+    "type": "har",
+    "routerMap": "$profile:route_map_point",
+    "deviceTypes": [
+      "phone",
+    ]
+  }
+}

@@ -1,0 +1,67 @@
+case:
+  id: requirement_001
+  scenario: requirement
+  title: 购物中心元服务新增会员一码通功能
+  prompt: 按照docs目录下的需求prd文档，完成会员一码通功能
+constraints:
+- id: EXP-MUST-01
+  name: 一码通Tab必须提供登录授权入口并跳转至会员二维码页面
+  priority: P0
+  rules:
+  - target: '**/components/CustomTabBar.ets'
+    llm: "检查底部Tab栏是否为一码通Tab提供了特殊渲染分支：已登录用户点击后通过 RouterUtil.pushPathByName 跳转至 RouterMap.MEMBER_SHIP_PAGE，未登录用户展示 FunctionalButton 授权组件，授权成功后回调跳转至同一页面。一码通Tab图标应比其他Tab更大（48x48 vs 24x24）且向上偏移"
+  - target: '**/pages/IndexPage.ets'
+    llm: "检查 IndexPage 的 Tabs 中是否包含对应一码通的 TabContent（可渲染为空页面，因为实际跳转使用 push 模式），且 Tab 数量与 TabBarType 枚举值一致"
+
+- id: EXP-MUST-02
+  name: 必须使用QRCode组件渲染会员二维码并在中心叠加Logo
+  priority: P0
+  rules:
+  - target: '**/pages/MemberShipPage.ets'
+    llm: "检查是否使用 HarmonyOS QRCode() 组件渲染二维码，传入内容为用户ID拼接时间戳（如 this.userInfo.userInfo.id + new Date().getTime()），二维码尺寸206x206，外围容器240x240白色背景圆角12。二维码中心必须叠加 Image 组件显示应用 Logo（ic_logo，宽度56px），使用 Stack 布局实现叠加效果"
+
+- id: EXP-MUST-03
+  name: 二维码必须支持5分钟自动刷新和手动刷新
+  priority: P0
+  rules:
+  - target: '**/pages/MemberShipPage.ets'
+    llm: "检查是否实现了自动刷新机制：页面 onShown 时启动 refreshTime()，使用 setInterval 设置300秒倒计时，count 递减至0时 clearInterval。页面 onHidden 时清除定时器。同时必须提供手动刷新按钮（Row 包含刷新图标和'刷新'文字），点击后调用 refreshTime() 重新生成二维码内容并重置倒计时"
+
+- id: EXP-MUST-04
+  name: 必须使用AppStorageV2连接全局用户状态和积分状态
+  priority: P0
+  rules:
+  - target: '**/pages/MemberShipPage.ets'
+    llm: "检查是否通过 AppStorageV2.connect(UserInfoModel, () => new UserInfoModel()) 连接全局用户信息模型获取用户ID（用于二维码生成），以及通过 AppStorageV2.connect(GlobalPointUtils, () => new GlobalPointUtils()) 连接全局积分管理器获取签到状态（isCheckIn）和积分数据（myPoints）"
+
+- id: EXP-MUST-05
+  name: 路由表必须注册MemberShipPage和MemberShipManualPage路由
+  priority: P0
+  rules:
+  - target: '**/route_map_mine.json'
+    llm: "检查 features/business_mine 模块的路由表文件（route_map_mine.json 或 router_map.json）中是否包含 MemberShipPage 路由条目（name: MemberShipPage, buildFunction: MemberShipPageBuilder）和 MemberShipManualPage 路由条目（name: MemberShipManualPage, buildFunction: MemberShipManualPageBuilder），且对应的 pageSourceFile 指向正确的页面文件"
+  - target: '**/RouterMap.ets'
+    llm: "检查 commons/lib_common 的 RouterMap 枚举中是否定义了 MEMBER_SHIP_PAGE = 'MemberShipPage' 和 MEMBER_SHIP_MANUAL = 'MemberShipManualPage' 枚举值"
+
+- id: EXP-SHOULD-01
+  name: 一码通页面右上角应提供签到功能入口
+  priority: P1
+  rules:
+  - target: '**/pages/MemberShipPage.ets'
+    llm: "检查 PageHeaderComp 组件的 rightBtnBuilder 是否构建了签到按钮：未签到时显示'签到'文字且可点击，签到后显示'已签到'且 enabled 为 false。点击签到时将 globalPointInfo.isCheckIn 设为 true，myPoints 增加10，并调用 ContextUtils.showToast 显示'签到成功~'提示"
+
+- id: EXP-SHOULD-02
+  name: 应在"我的"页面提供会员手册快捷入口
+  priority: P1
+  rules:
+  - target: '**/viewmodel/MinePageViewModel.ets'
+    llm: "检查 MinePageViewModel 的 diamondZoneList 数组中是否包含'会员手册'快捷入口，使用 ic_vip_header 图标，路由指向 RouterMap.MEMBER_SHIP_MANUAL。该入口应在 Grid 布局中通过 ForEach 正确渲染"
+  - target: '**/pages/MinePage.ets'
+    llm: "检查 MinePage 的 Grid 组件是否通过 ForEach 遍历 diamondZoneList，每个 GridItem 包含图标和标题文字，点击时通过 RouterUtil.pushPathByName 跳转至对应路由页面"
+
+- id: EXP-SHOULD-03
+  name: 刷新按钮点击时应执行图标旋转动画
+  priority: P1
+  rules:
+  - target: '**/pages/MemberShipPage.ets'
+    llm: "检查刷新按钮中的刷新图标（ic_refresh）是否绑定了 angle 状态变量进行 rotate 旋转，且在 refreshTime() 方法中通过 getUIContext().animateTo({ curve: Curve.EaseInOut, duration: 200 }) 驱动 angle 增加360度实现平滑旋转动画效果"

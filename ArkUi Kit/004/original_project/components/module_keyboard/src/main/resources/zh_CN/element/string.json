@@ -1,0 +1,29 @@
+{
+  "string": [
+    {
+      "name": "keyBord_collapse",
+      "value": "收起",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "keyBord_complete",
+      "value": "完成",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "new_energy",
+      "value": "新能源",
+      "attr": {
+        "priority": "translate"
+      }
+    },
+    {
+      "name": "agcit_huawei_shopping_mall",
+      "value": "1.0.0"
+    }
+  ]
+}
